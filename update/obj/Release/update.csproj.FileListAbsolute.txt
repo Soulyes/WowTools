@@ -1,0 +1,13 @@
+E:\VS程序\老钟的小工具2022\LZTools\update\bin\Release\update.exe.config
+E:\VS程序\老钟的小工具2022\LZTools\update\bin\Release\update.exe
+E:\VS程序\老钟的小工具2022\LZTools\update\bin\Release\update.pdb
+E:\VS程序\老钟的小工具2022\LZTools\update\obj\Release\update.csproj.AssemblyReference.cache
+E:\VS程序\老钟的小工具2022\LZTools\update\obj\Release\update.UpdateAPP.resources
+E:\VS程序\老钟的小工具2022\LZTools\update\obj\Release\update.Properties.Resources.resources
+E:\VS程序\老钟的小工具2022\LZTools\update\obj\Release\update.csproj.GenerateResource.cache
+E:\VS程序\老钟的小工具2022\LZTools\update\obj\Release\update.csproj.CoreCompileInputs.cache
+E:\VS程序\老钟的小工具2022\LZTools\update\obj\Release\update.exe
+E:\VS程序\老钟的小工具2022\LZTools\update\obj\Release\update.pdb
+E:\VS程序\老钟的小工具2022\LZTools\LZTools\bin\Release\update.exe.config
+E:\VS程序\老钟的小工具2022\LZTools\LZTools\bin\Release\update.exe
+E:\VS程序\老钟的小工具2022\LZTools\LZTools\bin\Release\update.pdb
