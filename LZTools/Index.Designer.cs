@@ -39,7 +39,6 @@
             this.StratTB = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.StartWorking = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.foreverButton1 = new ReaLTaiizor.Controls.ForeverButton();
             this.toSetting2 = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.ToSetting = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -175,6 +174,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.StartCheck = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.OpenDllLink = new System.Windows.Forms.OpenFileDialog();
+            this.HiddeButton = new ReaLTaiizor.Controls.Button();
             this.IndexTab.SuspendLayout();
             this.tabJinCheng.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -366,7 +366,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.foreverButton1);
             this.groupBox1.Controls.Add(this.toSetting2);
             this.groupBox1.Controls.Add(this.ToSetting);
             this.groupBox1.Controls.Add(this.dungeonLabel1);
@@ -384,21 +383,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "进程";
-            // 
-            // foreverButton1
-            // 
-            this.foreverButton1.BackColor = System.Drawing.Color.Transparent;
-            this.foreverButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.foreverButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foreverButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.foreverButton1.Location = new System.Drawing.Point(1070, 169);
-            this.foreverButton1.Name = "foreverButton1";
-            this.foreverButton1.Rounded = false;
-            this.foreverButton1.Size = new System.Drawing.Size(190, 40);
-            this.foreverButton1.TabIndex = 11;
-            this.foreverButton1.Text = "foreverButton1";
-            this.foreverButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.foreverButton1.Click += new System.EventHandler(this.foreverButton1_Click);
             // 
             // toSetting2
             // 
@@ -563,8 +547,6 @@
             this.ProcessList.FormattingEnabled = true;
             this.ProcessList.IntegralHeight = false;
             this.ProcessList.ItemHeight = 18;
-            this.ProcessList.Items.AddRange(new object[] {
-            "等待搜索"});
             this.ProcessList.Location = new System.Drawing.Point(52, 106);
             this.ProcessList.Margin = new System.Windows.Forms.Padding(4);
             this.ProcessList.Name = "ProcessList";
@@ -1664,6 +1646,7 @@
             this.DLLLinkPath.TabIndex = 31;
             this.DLLLinkPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.DLLLinkPath.UseSystemPasswordChar = false;
+            this.DLLLinkPath.DoubleClick += new System.EventHandler(this.DLLLinkPath_Click);
             // 
             // label1
             // 
@@ -2454,6 +2437,27 @@
             // 
             this.OpenDllLink.FileName = "openFileDialog1";
             // 
+            // HiddeButton
+            // 
+            this.HiddeButton.BackColor = System.Drawing.Color.Transparent;
+            this.HiddeButton.BorderColor = System.Drawing.Color.Transparent;
+            this.HiddeButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.HiddeButton.EnteredBorderColor = System.Drawing.Color.Transparent;
+            this.HiddeButton.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.HiddeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HiddeButton.Image = null;
+            this.HiddeButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.HiddeButton.InactiveColor = System.Drawing.Color.Transparent;
+            this.HiddeButton.Location = new System.Drawing.Point(1445, 6);
+            this.HiddeButton.Name = "HiddeButton";
+            this.HiddeButton.PressedBorderColor = System.Drawing.Color.Transparent;
+            this.HiddeButton.PressedColor = System.Drawing.Color.Transparent;
+            this.HiddeButton.Size = new System.Drawing.Size(20, 24);
+            this.HiddeButton.TabIndex = 16;
+            this.HiddeButton.Text = "_";
+            this.HiddeButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.HiddeButton.Click += new System.EventHandler(this.LzIcon_DoubleClick);
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2462,6 +2466,7 @@
             this.BackImagePadding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.BackMaxSize = 64;
             this.ClientSize = new System.Drawing.Size(1522, 1193);
+            this.Controls.Add(this.HiddeButton);
             this.Controls.Add(this.StartCheck);
             this.Controls.Add(this.parrotGroupBox1);
             this.Controls.Add(this.StartUpdate);
@@ -2470,6 +2475,7 @@
             this.Controls.Add(this.IndexTab);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Index";
             this.Padding = new System.Windows.Forms.Padding(20, 90, 20, 20);
             this.ShadowType = ReaLTaiizor.Enum.Poison.FormShadowType.AeroShadow;
@@ -2522,7 +2528,6 @@
         private System.Windows.Forms.TabPage tabGuanggao;
         private System.Windows.Forms.TabPage tabAI;
         private System.Windows.Forms.TabPage tabOther;
-        private System.Windows.Forms.GroupBox groupBox1;
         private ReaLTaiizor.Controls.CrownGroupBox crownGroupBox2;
         private ReaLTaiizor.Controls.HeaderLabel headerLabelJishiQI;
         private ReaLTaiizor.Controls.DreamTextBox TimeSet;
@@ -2536,12 +2541,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TabPage tabZW;
-        private ReaLTaiizor.Controls.DungeonListBox ProcessList;
-        private ReaLTaiizor.Controls.DungeonListBox TongBuList;
-        private ReaLTaiizor.Controls.DungeonListBox GuaList;
-        private ReaLTaiizor.Controls.RibbonButtonLeft ChooseWOW;
-        private ReaLTaiizor.Controls.RibbonButtonLeft TongBuin;
-        private ReaLTaiizor.Controls.RibbonButtonLeft GuajiIn;
         private ReaLTaiizor.Controls.AloneCheckBox MKEYF1;
         private ReaLTaiizor.Controls.AloneCheckBox MKEYF12;
         private ReaLTaiizor.Controls.AloneCheckBox MKEYF9;
@@ -2554,9 +2553,6 @@
         private ReaLTaiizor.Controls.AloneCheckBox MKEYF10;
         private ReaLTaiizor.Controls.AloneCheckBox MKEYF11;
         private ReaLTaiizor.Controls.AloneCheckBox MKEYF2;
-        private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
-        private ReaLTaiizor.Controls.FoxLinkLabel toSetting2;
-        private ReaLTaiizor.Controls.FoxLinkLabel ToSetting;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -2657,9 +2653,19 @@
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel2;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel2;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel1;
-        private ReaLTaiizor.Controls.ForeverButton foreverButton1;
         private ReaLTaiizor.Controls.RibbonButtonLeft ShowAllP;
         private ReaLTaiizor.Controls.RibbonButtonLeft HiddenAllP;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private ReaLTaiizor.Controls.FoxLinkLabel toSetting2;
+        private ReaLTaiizor.Controls.FoxLinkLabel ToSetting;
+        private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
+        private ReaLTaiizor.Controls.RibbonButtonLeft TongBuin;
+        private ReaLTaiizor.Controls.RibbonButtonLeft GuajiIn;
+        private ReaLTaiizor.Controls.RibbonButtonLeft ChooseWOW;
+        private ReaLTaiizor.Controls.DungeonListBox TongBuList;
+        private ReaLTaiizor.Controls.DungeonListBox GuaList;
+        private ReaLTaiizor.Controls.DungeonListBox ProcessList;
+        private ReaLTaiizor.Controls.Button HiddeButton;
     }
 }
 

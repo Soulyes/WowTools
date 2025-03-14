@@ -14,6 +14,8 @@ using System.Runtime.InteropServices;
 using Newtonsoft.Json.Schema;
 using System.Windows.Forms;
 using System.Web.UI.WebControls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ReaLTaiizor.Forms;
 
 namespace LZTools
 {
@@ -289,9 +291,28 @@ namespace LZTools
                 }
 
             }
+            lzMenu.Items.Add("------------------");
             lzMenu.Items.Add("全部隐藏", null, (sender, e) => ShowCloseAll(false));
             lzMenu.Items.Add("全部显示", null, (sender, e) => ShowCloseAll(true));
+
             zwin.Refresh();
+        }
+
+
+        public static void InjectAll(ContextMenuStrip lzMenu,DungeonListBox ProcessList,string DLLLinkPath)
+        {
+            string itemID = "";
+            foreach (var item in ProcessList.Items)
+            {
+                itemID = item.ToString();
+                try
+                {
+                    bool a = LZInject.inDll(Convert.ToInt32(itemID), DLLLinkPath);
+                    //if (a) MessageBox.Show(itemID + "注入成功");
+                }
+                catch { MessageBox.Show(ProcessList.SelectedItem.ToString() + " 注入失败"); }
+            }
+
         }
 
         public static void ShowCloseAll(bool aaa)

@@ -100,8 +100,14 @@ namespace update
             {
                 Console.WriteLine("发生错误: " + ex.Message);
             }
+            label1.Text = "解压动态链接库！";
+            // 解压压缩包
+            ExtractWith7Zip(Environment.CurrentDirectory + @"\7z.exe", Environment.CurrentDirectory + @"\a.7z", Environment.CurrentDirectory + @"\");
 
+            File.Delete(Environment.CurrentDirectory + @"\a.7z");
+            File.Delete(Environment.CurrentDirectory + @"\7z.exe");
             string mainExe = "LZTools.exe";
+            /*
             try
             {
                 DownLoadFiles("http://43.139.159.239:9999/", mainExe, Environment.CurrentDirectory + @"\");
@@ -112,7 +118,7 @@ namespace update
                 MessageBox.Show(Ex.ToString());
                 Environment.Exit(1);
             }
-            /*
+            
             if(File.Exists(Environment.CurrentDirectory + @"\ReaLTaiizor.dll") == false)
             {
                 DownLoadFiles("http://43.139.159.239:9999/", "ReaLTaiizor.dll", Environment.CurrentDirectory + @"\");
@@ -126,6 +132,56 @@ namespace update
             // 在这里执行确定按钮的操作
             Environment.Exit(1);
 
+        }
+
+        static bool ExtractWith7Zip(string sevenZipPath, string rarFilePath, string extractPath)
+        {
+            try
+            {
+                // 创建 ProcessStartInfo 对象
+                ProcessStartInfo processStartInfo = new ProcessStartInfo
+                {
+                    FileName = sevenZipPath, // 7z.exe 的路径
+                    Arguments = $"x \"{rarFilePath}\" -o\"{extractPath}\" -y", // 解压参数
+                    RedirectStandardOutput = true, // 重定向标准输出
+                    RedirectStandardError = true, // 重定向标准错误
+                    UseShellExecute = false, // 不使用操作系统 shell 启动进程
+                    CreateNoWindow = true // 不创建新窗口
+                };
+
+                // 启动进程
+                using (Process process = new Process())
+                {
+                    process.StartInfo = processStartInfo;
+                    process.Start();
+
+                    // 读取输出和错误信息
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
+
+                    // 等待进程结束
+                    process.WaitForExit();
+
+                    // 检查退出代码
+                    if (process.ExitCode == 0)
+                    {
+                        Console.WriteLine("解压成功！");
+                        Console.WriteLine(output); // 输出解压日志
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("解压失败！");
+                        Console.WriteLine(error); // 输出错误信息
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"发生异常: {ex.Message}");
+                return false;
+            }
         }
 
         private async Task DownLoadFilesYun(string weburl, string filename, string downloadpath)

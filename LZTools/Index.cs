@@ -25,6 +25,7 @@ using System.Web.UI.WebControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security;
 using System.Security.Policy;
+using OpenCvSharp.XPhoto;
 //using OpenCvSharp;
 
 namespace LZTools
@@ -54,7 +55,8 @@ namespace LZTools
 
             Control.CheckForIllegalCrossThreadCalls = false;
             this.Shown += StartTip;
-            this.Resize += SizeChange;
+            this.FormClosing += CloseIndex;
+            //this.Resize += SizeChange;
         }
 
         
@@ -265,12 +267,15 @@ namespace LZTools
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
+            SerachButtonIn();
+        }
 
+        private void SerachButtonIn()
+        {
             ThreadStart ThreadCk = () => CheckProcess();
             Thread DoCheck = new Thread(ThreadCk);
             DoCheck.Start();
         }
-
         /*
  Windows API 函数调用区
 */
@@ -285,7 +290,7 @@ namespace LZTools
             //Tip.Show(a, b, c, d, this.Location.X + this.Size.Width / 2, this.Location.Y + this.Height);
         }
 
-        private void CheckProcess()
+        public void CheckProcess()
         {
             ChooseWOW.Enabled = false;
             // 检查所有进城中包含“魔兽世界”的title，并打标
@@ -683,25 +688,25 @@ namespace LZTools
 
         private void LzIcon_DoubleClick(object sender, EventArgs e)
         {
+            if (this.Visible) this.Hide();
+            else this.Show();
 
-            if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
-            else if(this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Minimized;
+            //if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
+            //else if(this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Minimized;
+
         }
 
-
+        /*
         private void SizeChange(object sender, EventArgs e)
         {
-            
             if (this.WindowState == FormWindowState.Minimized)
             {
                 //ToTip("最小化");
                 ShowInTaskbar = false;
             }
             else ShowInTaskbar = true;
-            
-
         }
-
+        */
         private void StartUpdate_Click(object sender, EventArgs e)
         {
             LZDownlaod.UpdateMain();
@@ -717,6 +722,36 @@ namespace LZTools
         private void ZWSearch_Click(object sender, EventArgs e)
         {
             LZClass.ZWsearch(tabZW,ZwList);
+            //SerachButtonIn();
+            //Thread.Sleep(1000);
+            CheckProcess();
+            ZwList.Items.Add("------------------");
+            //ZwList.Items.Add("wow进程", null, (sender, e) => SerachButtonIn());
+            ZwList.Items.Add("搜索并DLL注入进程", null, (sender, e) => SandI());
+            ZwList.Items.Add("------------------");
+            ZwList.Items.Add("退出程序", null, (sender, e) => CloseIndex());
+        }
+
+        private void SandI()
+        {
+            CheckProcess();
+            LZClass.InjectAll(ZwList, ProcessList, DLLLinkPath.Text);
+        }
+
+        private void CloseIndex()
+        {
+            LZClass.ShowCloseAll(true);
+            LzIcon.Dispose();
+            this.Dispose();
+            this.Close();
+        }
+
+        private void CloseIndex(object sender, FormClosingEventArgs e)
+        {
+            LZClass.ShowCloseAll(true);
+            LzIcon.Dispose();
+            this.Dispose();
+            this.Close();
         }
 
         private void ProcessList_DoubleClick(object sender, EventArgs e)
@@ -724,12 +759,13 @@ namespace LZTools
             //注入 dll
             if(ProcessList.SelectedItem != null && DLLLinkPath.Text != "")
             {
+
                 try { 
-                    bool a = LZInject.inDll(Convert.ToInt16(ProcessList.SelectedItem.ToString()), DLLLinkPath.Text);
+                    bool a = LZInject.inDll(Convert.ToInt32(ProcessList.SelectedItem.ToString()), DLLLinkPath.Text);
                     if (a) ToTip(ProcessList.SelectedItem.ToString() + "注入成功");
                     else ToTip(ProcessList.SelectedItem.ToString() + "注入成功");
                 }
-                catch { ToTip(ProcessList.SelectedItem.ToString() + " 注入失败"); }
+                catch { ToTip(ProcessList.SelectedItem.ToString() + " 注入失败" );}
             }
             
         }
@@ -793,9 +829,9 @@ namespace LZTools
 
         private void foreverButton1_Click(object sender, EventArgs e)
         {
-            ImageFinder aaa = new ImageFinder(29304, "d1.jpg", 500);
+            //ImageFinder aaa = new ImageFinder(29304, "d1.jpg", 500);
             ToTip("开始搜索");
-            aaa.Start();
+            //aaa.Start();
 
         }
 
