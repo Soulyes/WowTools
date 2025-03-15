@@ -127,12 +127,12 @@ namespace LZTools
             bool ordertype = true;
             if (ListStr.Length > 1)
             {
-                OutBox.Text +=(DateTime.Now.ToString() + ": ");
+                //OutBox.Text +=(DateTime.Now.ToString() + ": ");
                 for (int i = 0; i < ListStr.Length; i++)
                 {
                     if (ordertype == true)
                     {
-                        OutBox.Text += ("按下按键：" + ListStr[i] + " ");
+                        //OutBox.Text += ("按下按键：" + ListStr[i] + " ");
                         SendKey(GuajiList, ListStr[i]);
                         ordertype = false;
                     }
@@ -144,7 +144,7 @@ namespace LZTools
                         {
                             Random rnd = new Random();
                             int rndtime = rnd.Next(int.Parse(time[0]), int.Parse(time[1]));
-                            OutBox.Text +=("随机时间为：" + rndtime.ToString() + " ");
+                            //OutBox.Text +=("随机时间为：" + rndtime.ToString() + " ");
                             Thread.Sleep(rndtime);
 
                         }
@@ -156,7 +156,7 @@ namespace LZTools
                         ordertype = true;
                     }
                 }
-                OutBox.Text +=("\r\n");
+                //OutBox.Text +=("\r\n");
                 
             }
 

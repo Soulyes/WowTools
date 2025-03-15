@@ -86,10 +86,62 @@ namespace LZTools
             toolTip1.SetToolTip(BattonChange, "输入名字，同时选择战网进程ID\r\n再点击修改战网备注即可修改！");
 
             CheckAll();
-
             //new ToastNotification("老钟小工具", "欢迎使用老钟魔兽小工具\r\n如果有任何疑问请点击kook或者QQ联系老钟", 3000);
         }
 
+        //注册快捷键
+
+        [DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
+
+        [DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        // 定义常量
+        private const int WM_HOTKEY = 0x0312; // 热键消息
+        private const int HOTKEY_ID_ALT_1 = 1; // Alt+1 的唯一标识符
+        private const int HOTKEY_ID_ALT_2 = 2; // Alt+2 的唯一标识符
+        private const int MOD_CRTL = 0x0002; // 0001 alt 0002 crtl
+        private const int MOD_ALT = 0x0001; // 0001 alt 0002 crtl
+        private const int VK_1 = 0x31; // 1 键的虚拟键码
+        private const int VK_2 = 0x32; // 2 键的虚拟键码
+        private const int VK_S = 0x53; // 2 键的虚拟键码
+        private const int VK_X = 0x58; // 2 键的虚拟键码
+
+
+        // 重写 WndProc 方法以处理窗口消息
+        protected override void WndProc(ref System.Windows.Forms.Message m)
+        {
+            base.WndProc(ref m);
+            if (KeySwitch.Checked == false)
+            {             // 检查是否是热键消息
+                if (m.Msg == WM_HOTKEY)
+                {
+                    int id = m.WParam.ToInt32();
+                    switch (id)
+                    {
+                        case HOTKEY_ID_ALT_1:
+                            SW();
+                            break;
+                        case HOTKEY_ID_ALT_2:
+                            TB();
+                            break;
+                    }
+                }
+            }
+            
+
+
+        }
+
+        // 在窗体加载时注册热键
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_1, MOD_ALT, VK_S); // 注册 Alt+1
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_ALT, VK_X); // 注册 Alt+2
+            //如果要ALT+CRTL RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_CRTL | MOD_ALT, VK_2); // 注册 Alt+2
+        }
 
         private async void CheckAll()
         {
@@ -546,6 +598,11 @@ namespace LZTools
 
         private void StartWorking_Click(object sender, EventArgs e)
         {
+            SW();
+        }
+
+        private void SW()
+        {
             if (AutoRunList.Text.Length > 0)
             {
                 if (StartWorking.Text == "启动挂机")
@@ -556,14 +613,15 @@ namespace LZTools
                     CoreTaskOnly.Start();
                     StartWorking.Text = "停止挂机";
                     GuajiIn.Enabled = false;
+                    INFOout.Text += (DateTime.Now.ToString() + ": 开始挂机按键！\r\n") ;
                     ToTip("自动挂机已经启动！");
                 }
                 else
                 {
                     StartWorking.Text = "启动挂机";
                     CoreTaskOnly.Abort();
-                    INFOout.Text +=("\r\n");
-
+                    //INFOout.Text += ("\r\n");
+                    INFOout.Text += (DateTime.Now.ToString() + ": 结束挂机按键！\r\n");
                     GuajiIn.Enabled = true;
                     ToTip("自动挂机已经关闭！");
                 }
@@ -576,6 +634,8 @@ namespace LZTools
                 //MainContol.SelectedIndex = 0;
                 InputKey.Focus();
             }
+
+            StartWorking.Refresh();
         }
 
         public void StartGuaji(bool stat = true)
@@ -598,6 +658,11 @@ namespace LZTools
 
         private void StratTB_Click(object sender, EventArgs e)
         {
+            TB();
+        }
+
+        private void TB()
+        {
             if (StratTB.Text == "启动同步")
             {
                 startSync();
@@ -608,8 +673,8 @@ namespace LZTools
                 stopSync();
                 ToTip("按键同步已经关闭！");
             }
+            StratTB.Refresh();
         }
-
         private KeyboardHook k_hook = new KeyboardHook();
         private KeyEventHandler myKeyEventHandeler = null;//按键钩子
 
@@ -741,6 +806,12 @@ namespace LZTools
         private void CloseIndex()
         {
             LZClass.ShowCloseAll(true);
+            try
+            {
+                UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_1); // 注销 Alt+1
+                UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_2); // 注销 Alt+2
+            }
+            catch { }
             LzIcon.Dispose();
             this.Dispose();
             this.Close();

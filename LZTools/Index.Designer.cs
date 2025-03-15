@@ -34,6 +34,7 @@
             this.IndexTab = new ReaLTaiizor.Controls.TabPage();
             this.tabJinCheng = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.KeySwitch = new ReaLTaiizor.Controls.MaterialSwitch();
             this.INFOout = new System.Windows.Forms.RichTextBox();
             this.StartFish = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.StratTB = new ReaLTaiizor.Controls.RibbonButtonLeft();
@@ -175,6 +176,7 @@
             this.StartCheck = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.OpenDllLink = new System.Windows.Forms.OpenFileDialog();
             this.HiddeButton = new ReaLTaiizor.Controls.Button();
+            this.dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
             this.IndexTab.SuspendLayout();
             this.tabJinCheng.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -258,6 +260,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.dungeonLabel3);
+            this.groupBox2.Controls.Add(this.KeySwitch);
             this.groupBox2.Controls.Add(this.INFOout);
             this.groupBox2.Controls.Add(this.StartFish);
             this.groupBox2.Controls.Add(this.StratTB);
@@ -270,6 +274,23 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "功能启用";
+            // 
+            // KeySwitch
+            // 
+            this.KeySwitch.AutoSize = true;
+            this.KeySwitch.Depth = 0;
+            this.KeySwitch.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.KeySwitch.Location = new System.Drawing.Point(748, 53);
+            this.KeySwitch.Margin = new System.Windows.Forms.Padding(0);
+            this.KeySwitch.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.KeySwitch.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            this.KeySwitch.Name = "KeySwitch";
+            this.KeySwitch.Ripple = true;
+            this.KeySwitch.Size = new System.Drawing.Size(138, 37);
+            this.KeySwitch.TabIndex = 11;
+            this.KeySwitch.Text = "开启快捷键";
+            this.KeySwitch.UseAccentColor = false;
+            this.KeySwitch.UseVisualStyleBackColor = true;
             // 
             // INFOout
             // 
@@ -2458,6 +2479,19 @@
             this.HiddeButton.TextAlignment = System.Drawing.StringAlignment.Center;
             this.HiddeButton.Click += new System.EventHandler(this.LzIcon_DoubleClick);
             // 
+            // dungeonLabel3
+            // 
+            this.dungeonLabel3.AutoSize = true;
+            this.dungeonLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.dungeonLabel3.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.dungeonLabel3.ForeColor = System.Drawing.Color.White;
+            this.dungeonLabel3.Location = new System.Drawing.Point(1163, 48);
+            this.dungeonLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dungeonLabel3.Name = "dungeonLabel3";
+            this.dungeonLabel3.Size = new System.Drawing.Size(108, 48);
+            this.dungeonLabel3.TabIndex = 11;
+            this.dungeonLabel3.Text = "挂机 ALT+X\r\n同步 ALT+S";
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2487,6 +2521,7 @@
             this.IndexTab.ResumeLayout(false);
             this.tabJinCheng.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPeizhi.ResumeLayout(false);
@@ -2666,6 +2701,8 @@
         private ReaLTaiizor.Controls.DungeonListBox GuaList;
         private ReaLTaiizor.Controls.DungeonListBox ProcessList;
         private ReaLTaiizor.Controls.Button HiddeButton;
+        private ReaLTaiizor.Controls.MaterialSwitch KeySwitch;
+        private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
     }
 }
 
