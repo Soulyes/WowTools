@@ -55,9 +55,20 @@ namespace LZTools
             this.Shown += StartTip;
             this.FormClosing += CloseIndex;
             //this.Resize += SizeChange;
+
+            //SearchIcon
+            SearchMenu.Items.Add("加入同步", null, (sender, e) => Tongbuin());
+            SearchMenu.Items.Add("加入挂机", null, (sender, e) => Guajiin());
+            SearchMenu.Items.Add("----------");
+            SearchMenu.Items.Add("重新搜索", null, (sender, e) => CheckProcess());
+            ProcessList.MouseClick += OnThisRightClick;
         }
 
-        
+        private void OnThisRightClick(object sender, MouseEventArgs e)
+        {
+            if(ProcessList.SelectedItem != null) { SearchMenu.Show(Cursor.Position); }
+            
+        }
 
         private void StartTip(object sender, EventArgs e)
         {
@@ -85,6 +96,7 @@ namespace LZTools
 
             CheckAll();
             DoShouNa();
+
             //new ToastNotification("老钟小工具", "欢迎使用老钟魔兽小工具\r\n如果有任何疑问请点击kook或者QQ联系老钟", 3000);
         }
 
@@ -312,13 +324,15 @@ namespace LZTools
 
         private void SerachButtonIn()
         {
+
+            CheckProcess();
+            /*
             ThreadStart ThreadCk = () => CheckProcess();
             Thread DoCheck = new Thread(ThreadCk);
             DoCheck.Start();
+            */
         }
-        /*
- Windows API 函数调用区
-*/
+
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         public static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, string lParam);
 
@@ -332,11 +346,13 @@ namespace LZTools
 
         public void CheckProcess()
         {
+            try { ProcessList.Items.Clear(); }
+            catch { }
             ChooseWOW.Enabled = false;
             // 检查所有进城中包含“魔兽世界”的title，并打标
             Process[] ps = Process.GetProcesses();
 
-            ProcessList.Items.Clear();
+
             AutoFishListBox.Items.Clear();
 
             foreach (Process p in ps)
@@ -364,6 +380,10 @@ namespace LZTools
 
         private void GuajiIn_Click(object sender, EventArgs e)
         {
+            Guajiin();
+        }
+        private void Guajiin()
+        {
             if (ProcessList.SelectedItem != null)
             {
                 bool canin = true;
@@ -379,7 +399,6 @@ namespace LZTools
                 if (canin == true) GuaList.Items.Add(ProcessList.SelectedItem.ToString());
             }
             else ToTip("请选择要加入挂机的进程！");
-
         }
 
         private void GuaList_DoubleClick(object sender, EventArgs e)
@@ -389,6 +408,11 @@ namespace LZTools
         }
 
         private void TongBuin_Click(object sender, EventArgs e)
+        {
+            Tongbuin();
+        }
+
+        private void Tongbuin()
         {
             if (ProcessList.SelectedItem != null)
             {
@@ -794,15 +818,21 @@ namespace LZTools
 
         private void DoShouNa()
         {
-            LZClass.ZWsearch(tabZW, ZwList);
-            //SerachButtonIn();
-            //Thread.Sleep(1000);
-            CheckProcess();
-            ZwList.Items.Add("------------------");
-            //ZwList.Items.Add("wow进程", null, (sender, e) => SerachButtonIn());
-            ZwList.Items.Add("搜索并DLL注入进程", null, (sender, e) => SandI());
-            ZwList.Items.Add("------------------");
-            ZwList.Items.Add("退出程序", null, (sender, e) => CloseIndex());
+            try
+            {
+                LZClass.ZWsearch(tabZW, ZwList);
+                //SerachButtonIn();
+                //Thread.Sleep(1000);
+                CheckProcess();
+                ZwList.Items.Add("------------------");
+                //ZwList.Items.Add("wow进程", null, (sender, e) => SerachButtonIn());
+                ZwList.Items.Add("搜索并DLL注入进程", null, (sender, e) => SandI());
+                ZwList.Items.Add("------------------");
+                ZwList.Items.Add("退出程序", null, (sender, e) => CloseIndex());
+            }
+            catch
+            { }
+
         }
 
         private void SandI()

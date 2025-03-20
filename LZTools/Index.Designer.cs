@@ -176,6 +176,7 @@
             this.StartCheck = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.OpenDllLink = new System.Windows.Forms.OpenFileDialog();
             this.HiddeButton = new ReaLTaiizor.Controls.Button();
+            this.SearchMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.IndexTab.SuspendLayout();
             this.tabJinCheng.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -2458,6 +2459,12 @@
             this.HiddeButton.TextAlignment = System.Drawing.StringAlignment.Center;
             this.HiddeButton.Click += new System.EventHandler(this.LzIcon_DoubleClick);
             // 
+            // SearchMenu
+            // 
+            this.SearchMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.SearchMenu.Name = "ZwList";
+            this.SearchMenu.Size = new System.Drawing.Size(61, 4);
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2667,6 +2674,7 @@
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
         private ReaLTaiizor.Controls.ComboBoxEdit KeySaveList;
         private ReaLTaiizor.Controls.LostButton LoadKeyList;
+        private System.Windows.Forms.ContextMenuStrip SearchMenu;
     }
 }
 
