@@ -113,6 +113,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tesseract, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tesseract.5.2.0\lib\net48\Tesseract.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckImage.cs" />
@@ -133,6 +136,7 @@
     <Compile Include="Tip.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VER.cs" />
     <Compile Include="WindowsNotice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,5 +196,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.2957.106\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.2957.106\build\Microsoft.Web.WebView2.targets'))" />
     <Error Condition="!Exists('..\packages\OpenCvSharp4.runtime.win.4.10.0.20241108\build\net48\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp4.runtime.win.4.10.0.20241108\build\net48\OpenCvSharp4.runtime.win.props'))" />
+    <Error Condition="!Exists('..\packages\Tesseract.5.2.0\build\Tesseract.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tesseract.5.2.0\build\Tesseract.targets'))" />
   </Target>
+  <Import Project="..\packages\Tesseract.5.2.0\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.5.2.0\build\Tesseract.targets')" />
 </Project>

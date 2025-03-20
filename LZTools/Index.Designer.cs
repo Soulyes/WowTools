@@ -34,6 +34,7 @@
             this.IndexTab = new ReaLTaiizor.Controls.TabPage();
             this.tabJinCheng = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
             this.KeySwitch = new ReaLTaiizor.Controls.MaterialSwitch();
             this.INFOout = new System.Windows.Forms.RichTextBox();
             this.StartFish = new ReaLTaiizor.Controls.RibbonButtonLeft();
@@ -105,6 +106,8 @@
             this.MKEYF2 = new ReaLTaiizor.Controls.AloneCheckBox();
             this.MKEYF1 = new ReaLTaiizor.Controls.AloneCheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.LoadKeyList = new ReaLTaiizor.Controls.LostButton();
+            this.KeySaveList = new ReaLTaiizor.Controls.ComboBoxEdit();
             this.AutoRunListCN = new System.Windows.Forms.RichTextBox();
             this.SaveAutoRunList = new ReaLTaiizor.Controls.LostButton();
             this.JoinAutoSay = new ReaLTaiizor.Controls.LostButton();
@@ -153,9 +156,6 @@
             this.BattonChange = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.ZWSearch = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.tabAI = new System.Windows.Forms.TabPage();
-            this.AiUpdateButton = new ReaLTaiizor.Controls.RibbonButtonLeft();
-            this.AiOutBox = new ReaLTaiizor.Controls.RichTextBoxEdit();
-            this.AiInputBox = new ReaLTaiizor.Controls.RichTextBoxEdit();
             this.tabOther = new System.Windows.Forms.TabPage();
             this.crownGroupBox2 = new ReaLTaiizor.Controls.CrownGroupBox();
             this.TimeTag = new ReaLTaiizor.Controls.HeaderLabel();
@@ -176,7 +176,6 @@
             this.StartCheck = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.OpenDllLink = new System.Windows.Forms.OpenFileDialog();
             this.HiddeButton = new ReaLTaiizor.Controls.Button();
-            this.dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
             this.IndexTab.SuspendLayout();
             this.tabJinCheng.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -195,7 +194,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.guanggao)).BeginInit();
             this.tabZW.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.tabAI.SuspendLayout();
             this.tabOther.SuspendLayout();
             this.crownGroupBox2.SuspendLayout();
             this.tabBQ.SuspendLayout();
@@ -275,6 +273,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "功能启用";
             // 
+            // dungeonLabel3
+            // 
+            this.dungeonLabel3.AutoSize = true;
+            this.dungeonLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.dungeonLabel3.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.dungeonLabel3.ForeColor = System.Drawing.Color.White;
+            this.dungeonLabel3.Location = new System.Drawing.Point(1101, 48);
+            this.dungeonLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dungeonLabel3.Name = "dungeonLabel3";
+            this.dungeonLabel3.Size = new System.Drawing.Size(162, 48);
+            this.dungeonLabel3.TabIndex = 11;
+            this.dungeonLabel3.Text = "挂机 ALT+Ctrl + S\r\n同步 ALT+Ctrl + X";
+            // 
             // KeySwitch
             // 
             this.KeySwitch.AutoSize = true;
@@ -286,11 +297,12 @@
             this.KeySwitch.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.KeySwitch.Name = "KeySwitch";
             this.KeySwitch.Ripple = true;
-            this.KeySwitch.Size = new System.Drawing.Size(138, 37);
+            this.KeySwitch.Size = new System.Drawing.Size(154, 37);
             this.KeySwitch.TabIndex = 11;
-            this.KeySwitch.Text = "开启快捷键";
+            this.KeySwitch.Text = "已启用快捷键";
             this.KeySwitch.UseAccentColor = false;
             this.KeySwitch.UseVisualStyleBackColor = true;
+            this.KeySwitch.CheckedChanged += new System.EventHandler(this.KeySwitch_CheckedChanged);
             // 
             // INFOout
             // 
@@ -1397,6 +1409,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.LoadKeyList);
+            this.groupBox3.Controls.Add(this.KeySaveList);
             this.groupBox3.Controls.Add(this.AutoRunListCN);
             this.groupBox3.Controls.Add(this.SaveAutoRunList);
             this.groupBox3.Controls.Add(this.JoinAutoSay);
@@ -1415,6 +1429,46 @@
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "按键顺序配置";
+            // 
+            // LoadKeyList
+            // 
+            this.LoadKeyList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.LoadKeyList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LoadKeyList.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LoadKeyList.ForeColor = System.Drawing.Color.White;
+            this.LoadKeyList.HoverColor = System.Drawing.Color.DodgerBlue;
+            this.LoadKeyList.Image = null;
+            this.LoadKeyList.Location = new System.Drawing.Point(960, 402);
+            this.LoadKeyList.Name = "LoadKeyList";
+            this.LoadKeyList.Size = new System.Drawing.Size(120, 40);
+            this.LoadKeyList.TabIndex = 41;
+            this.LoadKeyList.Text = "读取配置";
+            this.LoadKeyList.Click += new System.EventHandler(this.LoadKeyList_Click);
+            // 
+            // KeySaveList
+            // 
+            this.KeySaveList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
+            this.KeySaveList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.KeySaveList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.KeySaveList.DropDownHeight = 120;
+            this.KeySaveList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KeySaveList.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.KeySaveList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.KeySaveList.FormattingEnabled = true;
+            this.KeySaveList.HoverSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
+            this.KeySaveList.IntegralHeight = false;
+            this.KeySaveList.ItemHeight = 16;
+            this.KeySaveList.Items.AddRange(new object[] {
+            "按键顺序一",
+            "按键顺序二",
+            "按键顺序三",
+            "按键顺序四",
+            "按键顺序五"});
+            this.KeySaveList.Location = new System.Drawing.Point(720, 404);
+            this.KeySaveList.Name = "KeySaveList";
+            this.KeySaveList.Size = new System.Drawing.Size(173, 22);
+            this.KeySaveList.StartIndex = 0;
+            this.KeySaveList.TabIndex = 40;
             // 
             // AutoRunListCN
             // 
@@ -1616,7 +1670,7 @@
             this.GroupDLLinject.Controls.Add(this.DLLLinkPath);
             this.GroupDLLinject.Controls.Add(this.label1);
             this.GroupDLLinject.ForeColor = System.Drawing.Color.White;
-            this.GroupDLLinject.Location = new System.Drawing.Point(2, 2);
+            this.GroupDLLinject.Location = new System.Drawing.Point(2, 5);
             this.GroupDLLinject.Name = "GroupDLLinject";
             this.GroupDLLinject.Size = new System.Drawing.Size(1292, 137);
             this.GroupDLLinject.TabIndex = 4;
@@ -1873,7 +1927,7 @@
             this.parrotGroupBox2.BorderColor = System.Drawing.Color.DodgerBlue;
             this.parrotGroupBox2.BorderWidth = 1;
             this.parrotGroupBox2.Controls.Add(this.guanggao);
-            this.parrotGroupBox2.Location = new System.Drawing.Point(0, 0);
+            this.parrotGroupBox2.Location = new System.Drawing.Point(2, 12);
             this.parrotGroupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.parrotGroupBox2.Name = "parrotGroupBox2";
             this.parrotGroupBox2.Padding = new System.Windows.Forms.Padding(4);
@@ -2153,86 +2207,11 @@
             // tabAI
             // 
             this.tabAI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabAI.Controls.Add(this.AiUpdateButton);
-            this.tabAI.Controls.Add(this.AiOutBox);
-            this.tabAI.Controls.Add(this.AiInputBox);
             this.tabAI.Location = new System.Drawing.Point(144, 4);
             this.tabAI.Name = "tabAI";
             this.tabAI.Size = new System.Drawing.Size(1372, 970);
             this.tabAI.TabIndex = 3;
             this.tabAI.Text = "AI托管";
-            // 
-            // AiUpdateButton
-            // 
-            this.AiUpdateButton.BackColor = System.Drawing.Color.Transparent;
-            this.AiUpdateButton.BaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(201)))), ((int)(((byte)(205)))));
-            this.AiUpdateButton.BaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(190)))));
-            this.AiUpdateButton.BorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
-            this.AiUpdateButton.BorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.AiUpdateButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AiUpdateButton.DownBaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(201)))), ((int)(((byte)(205)))));
-            this.AiUpdateButton.DownBaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(190)))));
-            this.AiUpdateButton.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
-            this.AiUpdateButton.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.AiUpdateButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.AiUpdateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.AiUpdateButton.HoverBaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(191)))), ((int)(((byte)(195)))));
-            this.AiUpdateButton.HoverBaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(192)))), ((int)(((byte)(196)))));
-            this.AiUpdateButton.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
-            this.AiUpdateButton.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.AiUpdateButton.Location = new System.Drawing.Point(962, 204);
-            this.AiUpdateButton.Margin = new System.Windows.Forms.Padding(4);
-            this.AiUpdateButton.Name = "AiUpdateButton";
-            this.AiUpdateButton.Size = new System.Drawing.Size(210, 60);
-            this.AiUpdateButton.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.AiUpdateButton.TabIndex = 2;
-            this.AiUpdateButton.Text = "ribbonButtonLeft1";
-            this.AiUpdateButton.Visible = false;
-            this.AiUpdateButton.Click += new System.EventHandler(this.AiUpdateButton_Click);
-            // 
-            // AiOutBox
-            // 
-            this.AiOutBox.AutoWordSelection = false;
-            this.AiOutBox.BackColor = System.Drawing.Color.Transparent;
-            this.AiOutBox.BaseColor = System.Drawing.Color.Transparent;
-            this.AiOutBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.AiOutBox.EdgeColor = System.Drawing.Color.White;
-            this.AiOutBox.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.AiOutBox.ForeColor = System.Drawing.Color.DimGray;
-            this.AiOutBox.Location = new System.Drawing.Point(24, 454);
-            this.AiOutBox.Margin = new System.Windows.Forms.Padding(4);
-            this.AiOutBox.Name = "AiOutBox";
-            this.AiOutBox.ReadOnly = false;
-            this.AiOutBox.Size = new System.Drawing.Size(1240, 484);
-            this.AiOutBox.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            this.AiOutBox.TabIndex = 1;
-            this.AiOutBox.Text = "未开放";
-            this.AiOutBox.TextBackColor = System.Drawing.Color.White;
-            this.AiOutBox.TextBorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AiOutBox.TextFont = new System.Drawing.Font("Tahoma", 10F);
-            this.AiOutBox.WordWrap = true;
-            // 
-            // AiInputBox
-            // 
-            this.AiInputBox.AutoWordSelection = false;
-            this.AiInputBox.BackColor = System.Drawing.Color.Transparent;
-            this.AiInputBox.BaseColor = System.Drawing.Color.Transparent;
-            this.AiInputBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.AiInputBox.EdgeColor = System.Drawing.Color.White;
-            this.AiInputBox.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.AiInputBox.ForeColor = System.Drawing.Color.DimGray;
-            this.AiInputBox.Location = new System.Drawing.Point(24, 90);
-            this.AiInputBox.Margin = new System.Windows.Forms.Padding(4);
-            this.AiInputBox.Name = "AiInputBox";
-            this.AiInputBox.ReadOnly = false;
-            this.AiInputBox.Size = new System.Drawing.Size(807, 270);
-            this.AiInputBox.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            this.AiInputBox.TabIndex = 0;
-            this.AiInputBox.Text = "未开放";
-            this.AiInputBox.TextBackColor = System.Drawing.Color.White;
-            this.AiInputBox.TextBorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AiInputBox.TextFont = new System.Drawing.Font("Tahoma", 10F);
-            this.AiInputBox.WordWrap = true;
             // 
             // tabOther
             // 
@@ -2251,7 +2230,7 @@
             this.crownGroupBox2.Controls.Add(this.ButtonJiShiQI);
             this.crownGroupBox2.Controls.Add(this.headerLabelJishiQI);
             this.crownGroupBox2.Controls.Add(this.TimeSet);
-            this.crownGroupBox2.Location = new System.Drawing.Point(32, 34);
+            this.crownGroupBox2.Location = new System.Drawing.Point(2, 5);
             this.crownGroupBox2.Name = "crownGroupBox2";
             this.crownGroupBox2.Size = new System.Drawing.Size(602, 322);
             this.crownGroupBox2.TabIndex = 0;
@@ -2479,19 +2458,6 @@
             this.HiddeButton.TextAlignment = System.Drawing.StringAlignment.Center;
             this.HiddeButton.Click += new System.EventHandler(this.LzIcon_DoubleClick);
             // 
-            // dungeonLabel3
-            // 
-            this.dungeonLabel3.AutoSize = true;
-            this.dungeonLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.dungeonLabel3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.dungeonLabel3.ForeColor = System.Drawing.Color.White;
-            this.dungeonLabel3.Location = new System.Drawing.Point(1163, 48);
-            this.dungeonLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.dungeonLabel3.Name = "dungeonLabel3";
-            this.dungeonLabel3.Size = new System.Drawing.Size(108, 48);
-            this.dungeonLabel3.TabIndex = 11;
-            this.dungeonLabel3.Text = "挂机 ALT+X\r\n同步 ALT+S";
-            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2541,7 +2507,6 @@
             this.tabZW.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.tabAI.ResumeLayout(false);
             this.tabOther.ResumeLayout(false);
             this.crownGroupBox2.ResumeLayout(false);
             this.crownGroupBox2.PerformLayout();
@@ -2648,9 +2613,6 @@
         private Microsoft.Web.WebView2.WinForms.WebView2 topWeb;
         private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox2;
         private Microsoft.Web.WebView2.WinForms.WebView2 guanggao;
-        private ReaLTaiizor.Controls.RibbonButtonLeft AiUpdateButton;
-        private ReaLTaiizor.Controls.RichTextBoxEdit AiOutBox;
-        private ReaLTaiizor.Controls.RichTextBoxEdit AiInputBox;
         private ReaLTaiizor.Controls.HeaderLabel headerLabel1;
         private System.Windows.Forms.RichTextBox AutoRunListCN;
         private System.Windows.Forms.RichTextBox INFOout;
@@ -2703,6 +2665,8 @@
         private ReaLTaiizor.Controls.Button HiddeButton;
         private ReaLTaiizor.Controls.MaterialSwitch KeySwitch;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
+        private ReaLTaiizor.Controls.ComboBoxEdit KeySaveList;
+        private ReaLTaiizor.Controls.LostButton LoadKeyList;
     }
 }
 

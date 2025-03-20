@@ -34,7 +34,7 @@ namespace LZTools
 
             // 获取枚举值对应的名称
             string keyName = Enum.GetName(typeof(Keys), key);
-
+            /*
             if (keyName != null)
             {
                 Console.WriteLine($"键盘键码 {KeyCode} 对应的 Keys 枚举值为 {keyName}");
@@ -43,6 +43,7 @@ namespace LZTools
             {
                 Console.WriteLine($"无法找到键盘键码 {KeyCode} 对应的 Keys 枚举值");
             }
+            */
             return keyName;
         }
     }

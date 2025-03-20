@@ -26,7 +26,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security;
 using System.Security.Policy;
 using OpenCvSharp.XPhoto;
-//using OpenCvSharp;
 
 namespace LZTools
 {
@@ -38,7 +37,6 @@ namespace LZTools
         Thread CoreTaskOnly;
         Thread GuajiTaskOnly;
         List<String> KeyTList = new List<string>();
-        string ver = "110";
 
         [DllImport("User32.dll", EntryPoint = "PostMessage")]
         public static extern int PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
@@ -68,7 +66,7 @@ namespace LZTools
 
             // 在异步加载完成后调用 ToTip
             //ToTip("欢迎使用老钟的魔兽小工具\r\n当前版本:" + ver,300,75,5000);
-            ToTip("欢迎使用老钟的魔兽小工具\r\n当前版本: " + ver,300,70,5000);
+            ToTip("欢迎使用老钟的魔兽小工具\r\n当前版本: " + VER.FromVer(),300,70,5000);
             //ToTip("当前版本:" + ver);
 
             DLLLinkPath.Text = LzKeysDo.GetIni("DLL", "path", DLLLinkPath.Text, System.Environment.CurrentDirectory + @"\Runlist.ini"); 
@@ -86,6 +84,7 @@ namespace LZTools
             toolTip1.SetToolTip(BattonChange, "输入名字，同时选择战网进程ID\r\n再点击修改战网备注即可修改！");
 
             CheckAll();
+            DoShouNa();
             //new ToastNotification("老钟小工具", "欢迎使用老钟魔兽小工具\r\n如果有任何疑问请点击kook或者QQ联系老钟", 3000);
         }
 
@@ -138,20 +137,20 @@ namespace LZTools
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_1, MOD_ALT, VK_S); // 注册 Alt+1
-            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_ALT, VK_X); // 注册 Alt+2
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_1, MOD_ALT | MOD_CRTL, VK_S); // 注册 Alt+1
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_ALT | MOD_CRTL, VK_X); // 注册 Alt+2
             //如果要ALT+CRTL RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_CRTL | MOD_ALT, VK_2); // 注册 Alt+2
         }
 
         private async void CheckAll()
         {
 
-            StartCheck.Text = "初始化ing";
+            StartCheck.Text = "系统初始化";
             StartCheck.ForeColor = Color.Red;
             try
             {
                 StartUpdate.Visible = false;
-                if (LZDownlaod.CheckData(this, "105"))
+                if (LZDownlaod.CheckData(this, VER.FromVer()))
                 {
                     StartUpdate.Visible = true;
                 }
@@ -163,6 +162,8 @@ namespace LZTools
                 uri = "http://wd.wowlz.com/top.php";
                 if (LZClass.CheckWinVer() >= 10) topWeb.Source = new Uri(uri);
                 else LZDownlaod.OpenUrlInDefaultBrowser(uri);
+
+                // 更新说明
                 LZClass.DrawGroupBox(tabHelp);
 
             }
@@ -189,10 +190,38 @@ namespace LZTools
             LzKeysDo.KeyTListin(KeyTList, this);
             //SayList.Text = LzKeysDo.GetSay(System.Environment.CurrentDirectory + @"\Saylist.ini");
 
-
+            BindRightClickEventToControls(this);
+            IndexTab.MouseClick += OnFormMouseClick;
         }
 
-    
+        // 递归遍历控件并绑定事件
+        private void BindRightClickEventToControls(Control parentControl)
+        {
+            foreach (Control control in parentControl.Controls)
+            {
+                // 如果是 TabPage 或 GroupBox，绑定事件
+                if (control is System.Windows.Forms.TabPage || control is System.Windows.Forms.GroupBox)
+                {
+                    control.MouseClick += OnFormMouseClick;
+                }
+
+                // 如果控件包含子控件，递归遍历
+                if (control.HasChildren)
+                {
+                    BindRightClickEventToControls(control);
+                }
+            }
+        }
+
+        private void OnFormMouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // 显示 NotifyIcon 的右键菜单
+                ZwList.Show(Cursor.Position);
+            }
+        }
+
 
         private void ButtonJiShiQI_Click(object sender, EventArgs e)
         {
@@ -200,7 +229,7 @@ namespace LZTools
             if(LZClass.GetRunSt()) TimeStepThread.Abort();
             //try { TimeStepThread.Abort(); } catch { }
 
-            ThreadStart ThreadCk = () => LZClass.reftime(TimeSet.Text,TimeTag);
+            ThreadStart ThreadCk = () => LZClass.reftime(TimeSet.Text,TimeTag, LzIcon);
             TimeStepThread = new Thread(ThreadCk);
             TimeStepThread.Start();
         }
@@ -209,52 +238,11 @@ namespace LZTools
         private static readonly string apiUrl = "https://api.deepseek.com/v1/chat/completions";
 
         // 你的 DeepSeek API 密钥
-        private static readonly string apiKey = "sk-2423d7cd443947a396bae6ff0766fb68";
+        private static readonly string apiKey = "";
 
         private void AiUpdateButton_Click(object sender, EventArgs e)
         {
             new ToastNotification("老钟小工具", "欢迎使用老钟魔兽小工具\r\n如果有任何疑问请点击kook或者QQ联系老钟", 3000);
-            //await Task.Run();
-            /*
-            // 获取用户输入
-            string userInput = AiInputBox.Text;
-
-            // 如果输入为空，提示用户
-            if (string.IsNullOrEmpty(userInput))
-            {
-                MessageBox.Show("请输入对话内容！");
-                return;
-            }
-
-            AiUpdateButton.Text = "查询中";
-            AiUpdateButton.Enabled = false;
-            AiInputBox.Enabled = false;
-            // 设置对话内容
-            var messages = new[]
-            {
-                new { role = "system", content = "You are a helpful assistant." },
-                new { role = "user", content = userInput }
-            };
-
-            // 调用 DeepSeek API 并获取响应
-            try
-            {
-                string response = await CallDeepSeekApiAsync(messages);
-
-                // 解析响应并显示结果
-                var deepSeekResponse = JsonConvert.DeserializeObject<DeepSeekResponse>(response);
-                string assistantReply = deepSeekResponse.Choices[0].Message.Content;
-                AiOutBox.Text = assistantReply;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"发生错误：{ex.Message}");
-            }
-
-            AiUpdateButton.Text = "点击查询";
-            AiUpdateButton.Enabled = true;
-            AiInputBox.Enabled = true;
-            */
         }
 
         private async Task<string> CallDeepSeekApiAsync(object[] messages)
@@ -584,11 +572,7 @@ namespace LZTools
             InputKey.Focus();
         }
 
-        private void SaveAutoRunList_Click(object sender, EventArgs e)
-        {
-            InputKey.Focus();
-            LzKeysDo.SaveIni("RunList", "AutoRunList", AutoRunList.Text, System.Environment.CurrentDirectory + @"\Runlist.ini");
-        }
+
 
         private void SaveMKey_Click(object sender, EventArgs e)
         {
@@ -614,7 +598,8 @@ namespace LZTools
                     StartWorking.Text = "停止挂机";
                     GuajiIn.Enabled = false;
                     INFOout.Text += (DateTime.Now.ToString() + ": 开始挂机按键！\r\n") ;
-                    ToTip("自动挂机已经启动！");
+                    if (this.Visible) ToTip("自动挂机已经启动！");
+                    else LZClass.LeftDownMessage(LzIcon, "老钟魔兽", "自动挂机已经启动");
                 }
                 else
                 {
@@ -623,7 +608,8 @@ namespace LZTools
                     //INFOout.Text += ("\r\n");
                     INFOout.Text += (DateTime.Now.ToString() + ": 结束挂机按键！\r\n");
                     GuajiIn.Enabled = true;
-                    ToTip("自动挂机已经关闭！");
+                    if (this.Visible) ToTip("自动挂机已经关闭！");
+                    else LZClass.LeftDownMessage(LzIcon, "老钟魔兽", "自动挂机已经关闭");
                 }
             }
             else
@@ -666,12 +652,15 @@ namespace LZTools
             if (StratTB.Text == "启动同步")
             {
                 startSync();
-                ToTip("按键同步已经启动！");
+                if (this.Visible) ToTip("按键同步已经启动！");
+                else LZClass.LeftDownMessage(LzIcon, "老钟魔兽", "按键同步已经启动");
+                
             }
             else if (StratTB.Text == "关闭同步")
             {
                 stopSync();
-                ToTip("按键同步已经关闭！");
+                if (this.Visible) ToTip("按键同步已经关闭！");
+                else LZClass.LeftDownMessage(LzIcon, "老钟魔兽", "按键同步已经关闭");
             }
             StratTB.Refresh();
         }
@@ -774,19 +763,38 @@ namespace LZTools
         */
         private void StartUpdate_Click(object sender, EventArgs e)
         {
-            LZDownlaod.UpdateMain();
+            //LZDownlaod.UpdateMain();
+            //ToTip("开始下载最新 update.exe");
+            //LZDownlaod.DownLoadFile("", "update.exe", Environment.CurrentDirectory + @"\");
+            //下载
+
+            //ToTip("下载完毕，关闭主程序！");
+            Thread.Sleep(1000);
+            Process.Start(Environment.CurrentDirectory + @"\update.exe");
+            // 在这里执行确定按钮的操作
+            Environment.Exit(1);
         }
 
         private void StartFish_Click(object sender, EventArgs e)
         {
-            ToTip("功能开发中，敬请期待！");
+            //ToTip("功能开发中，敬请期待！");
+            ThreadStart ThreadImage = () => ImageFinder.ToFind();
+            Thread ImageCh = new Thread(ThreadImage);
+            ImageCh.Start();
+
+            //ImageFinder.ToFind();
         }
 
 
         
         private void ZWSearch_Click(object sender, EventArgs e)
         {
-            LZClass.ZWsearch(tabZW,ZwList);
+            DoShouNa();
+        }
+
+        private void DoShouNa()
+        {
+            LZClass.ZWsearch(tabZW, ZwList);
             //SerachButtonIn();
             //Thread.Sleep(1000);
             CheckProcess();
@@ -800,7 +808,8 @@ namespace LZTools
         private void SandI()
         {
             CheckProcess();
-            LZClass.InjectAll(ZwList, ProcessList, DLLLinkPath.Text);
+            LZClass.InjectAll(ZwList, ProcessList, DLLLinkPath.Text,LzIcon);
+            //LZClass.LeftDownMessage(LzIcon, "老钟魔兽提醒", "自动挂机已经关闭");
         }
 
         private void CloseIndex()
@@ -915,5 +924,34 @@ namespace LZTools
         {
             LZClass.ShowCloseAll(false);
         }
+
+        private void KeySwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            if(KeySwitch.Checked ) { KeySwitch.Text = "已关闭快捷键"; }
+            else { KeySwitch.Text = "已启用快捷键"; }
+        }
+
+        private void LoadSaveList_Click(object sender, EventArgs e)
+        {
+            
+            AutoRunList.Text = LzKeysDo.GetIni("RunList", KeySaveList.Text, "", System.Environment.CurrentDirectory + @"\Runlist.ini");
+            TransToCN();
+        }
+
+        private void SaveAutoRunList_Click(object sender, EventArgs e)
+        {
+            InputKey.Focus();
+            LzKeysDo.SaveIni("RunList", "AutoRunList", AutoRunList.Text, System.Environment.CurrentDirectory + @"\Runlist.ini");
+            LzKeysDo.SaveIni("RunList", KeySaveList.Text, AutoRunList.Text, System.Environment.CurrentDirectory + @"\Runlist.ini");
+            
+        }
+
+        private void LoadKeyList_Click(object sender, EventArgs e)
+        {
+            AutoRunList.Text = LzKeysDo.GetIni("RunList", KeySaveList.Text, "", System.Environment.CurrentDirectory + @"\Runlist.ini");
+            TransToCN();
+            KeySaveList.Refresh();
+        }
+
     }
 }

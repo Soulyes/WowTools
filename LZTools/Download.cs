@@ -116,6 +116,8 @@ namespace LZTools
 
         public static void UpdateMain()
         {
+            //下载update.exe并执行（确保update.exe是最新的）
+
             Process.Start(Environment.CurrentDirectory + @"\update.exe");
             // 在这里执行确定按钮的操作
             Environment.Exit(1);

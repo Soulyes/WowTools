@@ -189,7 +189,7 @@ namespace LZTools
                     // 在这里可以对每个按钮执行操作
                     button.FlatStyle = FlatStyle.Flat;
                     button.FlatAppearance.BorderSize = 0;
-                    Console.WriteLine($"\n找到  '{button.Name.ToString()}' ");
+                    //Console.WriteLine($"\n找到  '{button.Name.ToString()}' ");
                     button.Checked = true;
                 }
             }

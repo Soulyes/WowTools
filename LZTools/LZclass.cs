@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using System.Web.UI.WebControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ReaLTaiizor.Forms;
+using System.Net.Http;
 
 namespace LZTools
 {
@@ -28,7 +29,14 @@ namespace LZTools
             return ThreadRun;
         }
 
-        public static void reftime(string TimeSet,HeaderLabel TimeLable)
+        public static void LeftDownMessage(NotifyIcon MessageSend,String Title,String Text,int TimeEx = 5000)
+        {
+            MessageSend.BalloonTipTitle = Title;
+            MessageSend.BalloonTipText = Text;
+            MessageSend.ShowBalloonTip(TimeEx);
+        }
+
+        public static void reftime(string TimeSet,HeaderLabel TimeLable,NotifyIcon MessageSend)
         {
             int TimeStep = 420;
             try
@@ -50,6 +58,9 @@ namespace LZTools
 
             ThreadRun = false;
             SystemSounds.Hand.Play();
+            MessageSend.BalloonTipTitle = "倒计时提醒";
+            MessageSend.BalloonTipText = "倒计时已经结束";
+            MessageSend.ShowBalloonTip(5000);
         }
 
         public static int CheckWinVer()
@@ -299,7 +310,7 @@ namespace LZTools
         }
 
 
-        public static void InjectAll(ContextMenuStrip lzMenu,DungeonListBox ProcessList,string DLLLinkPath)
+        public static void InjectAll(ContextMenuStrip lzMenu,DungeonListBox ProcessList,string DLLLinkPath,NotifyIcon MessageIcon)
         {
             string itemID = "";
             foreach (var item in ProcessList.Items)
@@ -309,6 +320,7 @@ namespace LZTools
                 {
                     bool a = LZInject.inDll(Convert.ToInt32(itemID), DLLLinkPath);
                     //if (a) MessageBox.Show(itemID + "注入成功");
+                    LeftDownMessage(MessageIcon, "老钟魔兽", "DLL已经进行注入！");
                 }
                 catch { MessageBox.Show(ProcessList.SelectedItem.ToString() + " 注入失败"); }
             }
@@ -328,7 +340,57 @@ namespace LZTools
             Random random = new Random();
             int labelCount = 4;
             int height = 120;
+            string url = "http://www.wowlz.com:9999/updatenews.php";
 
+            try
+            {
+                // 使用 HttpClient 发送 GET 请求
+                using (HttpClient client = new HttpClient())
+                {
+                    // 获取网页内容
+                    string htmlContent = client.GetStringAsync(url).GetAwaiter().GetResult();
+
+                    // 按行分割内容
+                    var lines = htmlContent.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    // 获取前四行
+                    var firstFourLines = lines.Take(4);
+
+                    // 输出前四行
+                    int i = 0;
+                    foreach (var line in firstFourLines)
+                    {
+
+                        string[] thisline = line.Split(',');
+
+                        System.Windows.Forms.GroupBox group = new System.Windows.Forms.GroupBox()
+                        {
+                            Text = "版本更新：" + thisline[0],
+                            Location = new Point(5, i * (height + 20)),
+                            ForeColor = Color.White,
+                            Size = new System.Drawing.Size(855, height)
+                        };
+                        System.Windows.Forms.Label label = new System.Windows.Forms.Label
+                        {
+                            Text = $"{thisline[1].Replace("<br>",Environment.NewLine)}", // 随机内容
+                            AutoSize = true, // 自动调整大小
+                            ForeColor = Color.White,
+                            Location = new Point(5, 20),
+                            Margin = new Padding(0, 0, 0, 10) // 下边距 10px
+
+                        };
+                        tabin.Controls.Add(group);
+                        group.Controls.Add(label);
+                        i++;
+                        if (i > 3) break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("发生错误: " + ex.Message);
+            }
+            /*
             for (int i = 0; i < labelCount; i++)
             {
                 System.Windows.Forms.GroupBox group = new System.Windows.Forms.GroupBox()
@@ -352,6 +414,7 @@ namespace LZTools
                 group.Controls.Add(label);
 
             }
+            */
         }
 
         private static string GenerateRandomText(Random random)
