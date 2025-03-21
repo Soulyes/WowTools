@@ -42,6 +42,7 @@ namespace LZTools
         public static extern int PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
         const int WM_KEYDOWN = 0x0100; //按下按键
         const int WM_KEYUP = 0x101; //弹起按键 
+        System.Windows.Forms.Timer tenMin = new System.Windows.Forms.Timer();
 
         public Index()
         {
@@ -62,15 +63,39 @@ namespace LZTools
             SearchMenu.Items.Add("----------");
             SearchMenu.Items.Add("重新搜索", null, (sender, e) => CheckProcess());
             ProcessList.MouseClick += OnThisRightClick;
+
+            openweb();
+
+            tenMin = new System.Windows.Forms.Timer();
+            tenMin.Interval = 600000; // 10 分钟的毫秒数
+            tenMin.Tick += new EventHandler(OnTenMinTimerTick);
+            tenMin.Start(); // 启动 Timer
+
+        }
+
+        private void OnTenMinTimerTick(object sender, EventArgs e)
+        {
+            openweb(); // 每 10 分钟调用一次 opencheck()
         }
 
         private void OnThisRightClick(object sender, MouseEventArgs e)
         {
-            if(ProcessList.SelectedItem != null) { SearchMenu.Show(Cursor.Position); }
+            
+            if(ProcessList.SelectedItem != null) 
+            { 
+                if(SearchMenu.Items.Count == 5)
+                {
+                    SearchMenu.Items.RemoveAt(4);
+                }
+                SearchMenu.Items.Add(@"DLL注入： " + ProcessList.Text ,null,(sender,e) => Toinj());
+                SearchMenu.Show(Cursor.Position); 
+            }
             
         }
 
-        private void StartTip(object sender, EventArgs e)
+        
+
+        private async void StartTip(object sender, EventArgs e)
         {
             // 模拟异步加载
             //await Task.Delay(2000); // 假设加载需要 2 秒
@@ -96,6 +121,9 @@ namespace LZTools
 
             CheckAll();
             DoShouNa();
+
+           
+
 
             //new ToastNotification("老钟小工具", "欢迎使用老钟魔兽小工具\r\n如果有任何疑问请点击kook或者QQ联系老钟", 3000);
         }
@@ -154,7 +182,7 @@ namespace LZTools
             //如果要ALT+CRTL RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_CRTL | MOD_ALT, VK_2); // 注册 Alt+2
         }
 
-        private async void CheckAll()
+        private void CheckAll()
         {
 
             StartCheck.Text = "系统初始化";
@@ -166,15 +194,6 @@ namespace LZTools
                 {
                     StartUpdate.Visible = true;
                 }
-
-                string uri = await Task.Run( () => LZDownlaod.GetWeb());
-                if (LZClass.CheckWinVer() >= 10) guanggao.Source = new Uri(uri);
-                else LZDownlaod.OpenUrlInDefaultBrowser(uri);
-
-                uri = "http://wd.wowlz.com/top.php";
-                if (LZClass.CheckWinVer() >= 10) topWeb.Source = new Uri(uri);
-                else LZDownlaod.OpenUrlInDefaultBrowser(uri);
-
                 // 更新说明
                 LZClass.DrawGroupBox(tabHelp);
 
@@ -183,6 +202,17 @@ namespace LZTools
 
 
             StartCheck.Text = "";
+        }
+
+        private async void openweb()
+        {
+            string uri = await Task.Run(() => LZDownlaod.GetWeb());
+            if (LZClass.CheckWinVer() >= 10) guanggao.Source = new Uri(uri);
+            else LZDownlaod.OpenUrlInDefaultBrowser(uri);
+
+            uri = "http://wd.wowlz.com/top.php";
+            if (LZClass.CheckWinVer() >= 10) topWeb.Source = new Uri(uri);
+            else LZDownlaod.OpenUrlInDefaultBrowser(uri);
         }
 
         int TimeStep = 0;
@@ -319,18 +349,7 @@ namespace LZTools
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            SerachButtonIn();
-        }
-
-        private void SerachButtonIn()
-        {
-
             CheckProcess();
-            /*
-            ThreadStart ThreadCk = () => CheckProcess();
-            Thread DoCheck = new Thread(ThreadCk);
-            DoCheck.Start();
-            */
         }
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
@@ -346,15 +365,17 @@ namespace LZTools
 
         public void CheckProcess()
         {
-            try { ProcessList.Items.Clear(); }
-            catch { }
+            //try { ProcessList.Items.Clear(); AutoFishListBox.Items.Clear(); }
+            //catch(Exception ex) { MessageBox.Show(ex.ToString()); }
+            dungeonLabel1.Focus();
+            Thread.Sleep(100);
+
+            ProcessList.Items.Clear();
+            
+
             ChooseWOW.Enabled = false;
             // 检查所有进城中包含“魔兽世界”的title，并打标
             Process[] ps = Process.GetProcesses();
-
-
-            AutoFishListBox.Items.Clear();
-
             foreach (Process p in ps)
             {
                 try
@@ -606,12 +627,13 @@ namespace LZTools
 
         private void StartWorking_Click(object sender, EventArgs e)
         {
-            SW();
+            if (GuaList.Items.Count > 0) SW();
+            else ToTip("请先添加需要挂机的进程");
         }
 
         private void SW()
         {
-            if (AutoRunList.Text.Length > 0)
+            if (AutoRunList.Text.Length > 0 && GuaList.Items.Count > 0)
             {
                 if (StartWorking.Text == "启动挂机")
                 {
@@ -638,7 +660,7 @@ namespace LZTools
             }
             else
             {
-                ToTip("请录入挂机指令！");
+                ToTip("没有挂机指令或者没有同步的进程！");
                 //MaterialSnackBar SendMessage = new MaterialSnackBar("请录入挂机指令！", 1000);
                 //SendMessage.Show(this);
                 //MainContol.SelectedIndex = 0;
@@ -668,25 +690,30 @@ namespace LZTools
 
         private void StratTB_Click(object sender, EventArgs e)
         {
-            TB();
+            if (TongBuList.Items.Count > 0) TB();
+            else ToTip("请先添加需要同步的进程!");
         }
 
         private void TB()
         {
-            if (StratTB.Text == "启动同步")
+            if (TongBuList.Items.Count > 0)
             {
-                startSync();
-                if (this.Visible) ToTip("按键同步已经启动！");
-                else LZClass.LeftDownMessage(LzIcon, "老钟魔兽", "按键同步已经启动");
-                
+                if (StratTB.Text == "启动同步")
+                {
+                    startSync();
+                    if (this.Visible) ToTip("按键同步已经启动！");
+                    else LZClass.LeftDownMessage(LzIcon, "老钟魔兽", "按键同步已经启动");
+
+                }
+                else if (StratTB.Text == "关闭同步")
+                {
+                    stopSync();
+                    if (this.Visible) ToTip("按键同步已经关闭！");
+                    else LZClass.LeftDownMessage(LzIcon, "老钟魔兽", "按键同步已经关闭");
+                }
+                StratTB.Refresh();
             }
-            else if (StratTB.Text == "关闭同步")
-            {
-                stopSync();
-                if (this.Visible) ToTip("按键同步已经关闭！");
-                else LZClass.LeftDownMessage(LzIcon, "老钟魔兽", "按键同步已经关闭");
-            }
-            StratTB.Refresh();
+            else ToTip("请先添加需要同步的进程!");
         }
         private KeyboardHook k_hook = new KeyboardHook();
         private KeyEventHandler myKeyEventHandeler = null;//按键钩子
@@ -866,18 +893,28 @@ namespace LZTools
 
         private void ProcessList_DoubleClick(object sender, EventArgs e)
         {
-            //注入 dll
-            if(ProcessList.SelectedItem != null && DLLLinkPath.Text != "")
-            {
+            Toinj();
+        }
 
-                try { 
-                    bool a = LZInject.inDll(Convert.ToInt32(ProcessList.SelectedItem.ToString()), DLLLinkPath.Text);
-                    if (a) ToTip(ProcessList.SelectedItem.ToString() + "注入成功");
-                    else ToTip(ProcessList.SelectedItem.ToString() + "注入成功");
+        private void Toinj()
+        {
+            //注入 dll
+            try
+            {
+                if (ProcessList.SelectedItem != null && DLLLinkPath.Text != "")
+                {
+
+                    try
+                    {
+                        bool a = LZInject.inDll(Convert.ToInt32(ProcessList.SelectedItem.ToString()), DLLLinkPath.Text);
+                        if (a) ToTip(ProcessList.SelectedItem.ToString() + "注入成功");
+                        else ToTip(ProcessList.SelectedItem.ToString() + "注入成功");
+                    }
+                    catch { ToTip(ProcessList.SelectedItem.ToString() + " 注入失败"); }
                 }
-                catch { ToTip(ProcessList.SelectedItem.ToString() + " 注入失败" );}
             }
-            
+            catch { }
+
         }
 
         private void DLLLinkPath_Click(object sender, EventArgs e)
