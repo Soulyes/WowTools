@@ -17,6 +17,7 @@ using System.Web.UI.WebControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ReaLTaiizor.Forms;
 using System.Net.Http;
+using OpenCvSharp.Internal;
 
 namespace LZTools
 {
@@ -428,5 +429,41 @@ namespace LZTools
             }
             return new string(text);
         }
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
+
+
+        public static int GetProcess()
+        {
+            IntPtr foregroundWindowHandle = GetForegroundWindow();
+
+            if (foregroundWindowHandle == IntPtr.Zero)
+            {
+                Console.WriteLine("没有找到前台窗口");
+                return 0;
+            }
+
+            uint processId;
+            GetWindowThreadProcessId(foregroundWindowHandle, out processId);
+
+            Console.WriteLine($"当前焦点程序的进程ID: {processId}");
+
+            // 如果你想获取进程名，可以使用Process类
+            try
+            {
+                Process process = Process.GetProcessById((int)processId);
+                if (process.MainWindowTitle.Contains("魔兽世界")) return (int)processId;
+                else return 0;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        
     }
 }

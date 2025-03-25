@@ -140,12 +140,14 @@ namespace LZTools
         private const int WM_HOTKEY = 0x0312; // 热键消息
         private const int HOTKEY_ID_ALT_1 = 1; // Alt+1 的唯一标识符
         private const int HOTKEY_ID_ALT_2 = 2; // Alt+2 的唯一标识符
+        private const int HOTKEY_ID_ALT_3 = 3; // ALT+CTRL+Q 的唯一标识符
         private const int MOD_CRTL = 0x0002; // 0001 alt 0002 crtl
         private const int MOD_ALT = 0x0001; // 0001 alt 0002 crtl
         private const int VK_1 = 0x31; // 1 键的虚拟键码
         private const int VK_2 = 0x32; // 2 键的虚拟键码
         private const int VK_S = 0x53; // 2 键的虚拟键码
         private const int VK_X = 0x58; // 2 键的虚拟键码
+        private const int VK_Q = 0x51; // 2 键的虚拟键码
 
 
         // 重写 WndProc 方法以处理窗口消息
@@ -165,11 +167,26 @@ namespace LZTools
                         case HOTKEY_ID_ALT_2:
                             TB();
                             break;
+                        case HOTKEY_ID_ALT_3:
+                            {
+                                int Foucid = LZClass.GetProcess();
+                                if (Foucid != 0)
+                                {
+                                    try
+                                    {
+                                        bool a = LZInject.inDll(Foucid, DLLLinkPath.Text);
+                                        if (a) ToTip(Foucid.ToString() + "注入成功");
+                                        else ToTip(Foucid.ToString() + "注入成功");
+                                    }
+                                    catch { ToTip(Foucid.ToString() + " 注入失败"); }
+                                }
+                                else { ToTip(Foucid.ToString() + " 注入失败"); }
+                                break;
+                            }
+                            
                     }
                 }
             }
-            
-
 
         }
 
@@ -179,6 +196,7 @@ namespace LZTools
             base.OnLoad(e);
             RegisterHotKey(this.Handle, HOTKEY_ID_ALT_1, MOD_ALT | MOD_CRTL, VK_S); // 注册 Alt+1
             RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_ALT | MOD_CRTL, VK_X); // 注册 Alt+2
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_3, MOD_ALT | MOD_CRTL, VK_Q); // 注册 Alt+Q
             //如果要ALT+CRTL RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_CRTL | MOD_ALT, VK_2); // 注册 Alt+2
         }
 
