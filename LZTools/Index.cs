@@ -860,6 +860,7 @@ namespace LZTools
         
         private void ZWSearch_Click(object sender, EventArgs e)
         {
+            LZClass.ShowCloseAll(true);
             DoShouNa();
         }
 

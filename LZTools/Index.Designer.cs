@@ -164,6 +164,8 @@
             this.tabHelp = new System.Windows.Forms.TabPage();
             this.tabBQ = new System.Windows.Forms.TabPage();
             this.headerLabel1 = new ReaLTaiizor.Controls.HeaderLabel();
+            this.mianzePage = new System.Windows.Forms.TabPage();
+            this.headerLabel2 = new ReaLTaiizor.Controls.HeaderLabel();
             this.KOOKlink = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.QQJoin = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.LzIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -176,8 +178,6 @@
             this.OpenDllLink = new System.Windows.Forms.OpenFileDialog();
             this.HiddeButton = new ReaLTaiizor.Controls.Button();
             this.SearchMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mianzePage = new System.Windows.Forms.TabPage();
-            this.headerLabel2 = new ReaLTaiizor.Controls.HeaderLabel();
             this.IndexTab.SuspendLayout();
             this.tabJinCheng.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -199,9 +199,9 @@
             this.tabOther.SuspendLayout();
             this.crownGroupBox2.SuspendLayout();
             this.tabBQ.SuspendLayout();
+            this.mianzePage.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topWeb)).BeginInit();
-            this.mianzePage.SuspendLayout();
             this.SuspendLayout();
             // 
             // IndexTab
@@ -2204,7 +2204,7 @@
             this.ZWSearch.Size = new System.Drawing.Size(613, 45);
             this.ZWSearch.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.ZWSearch.TabIndex = 9;
-            this.ZWSearch.Text = "显示收纳清单";
+            this.ZWSearch.Text = "刷新收纳清单";
             this.ZWSearch.Click += new System.EventHandler(this.ZWSearch_Click);
             // 
             // tabOther
@@ -2317,6 +2317,29 @@
             this.headerLabel1.Size = new System.Drawing.Size(848, 600);
             this.headerLabel1.TabIndex = 2;
             this.headerLabel1.Text = resources.GetString("headerLabel1.Text");
+            // 
+            // mianzePage
+            // 
+            this.mianzePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.mianzePage.Controls.Add(this.headerLabel2);
+            this.mianzePage.Location = new System.Drawing.Point(144, 4);
+            this.mianzePage.Name = "mianzePage";
+            this.mianzePage.Padding = new System.Windows.Forms.Padding(3);
+            this.mianzePage.Size = new System.Drawing.Size(1372, 970);
+            this.mianzePage.TabIndex = 10;
+            this.mianzePage.Text = "免责申明";
+            // 
+            // headerLabel2
+            // 
+            this.headerLabel2.AutoSize = true;
+            this.headerLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.headerLabel2.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headerLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.headerLabel2.Location = new System.Drawing.Point(49, 47);
+            this.headerLabel2.Name = "headerLabel2";
+            this.headerLabel2.Size = new System.Drawing.Size(1289, 780);
+            this.headerLabel2.TabIndex = 3;
+            this.headerLabel2.Text = resources.GetString("headerLabel2.Text");
             // 
             // KOOKlink
             // 
@@ -2458,29 +2481,6 @@
             this.SearchMenu.Name = "ZwList";
             this.SearchMenu.Size = new System.Drawing.Size(61, 4);
             // 
-            // mianzePage
-            // 
-            this.mianzePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.mianzePage.Controls.Add(this.headerLabel2);
-            this.mianzePage.Location = new System.Drawing.Point(144, 4);
-            this.mianzePage.Name = "mianzePage";
-            this.mianzePage.Padding = new System.Windows.Forms.Padding(3);
-            this.mianzePage.Size = new System.Drawing.Size(1372, 970);
-            this.mianzePage.TabIndex = 10;
-            this.mianzePage.Text = "免责申明";
-            // 
-            // headerLabel2
-            // 
-            this.headerLabel2.AutoSize = true;
-            this.headerLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.headerLabel2.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.headerLabel2.Location = new System.Drawing.Point(49, 47);
-            this.headerLabel2.Name = "headerLabel2";
-            this.headerLabel2.Size = new System.Drawing.Size(1289, 780);
-            this.headerLabel2.TabIndex = 3;
-            this.headerLabel2.Text = resources.GetString("headerLabel2.Text");
-            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2535,11 +2535,11 @@
             this.crownGroupBox2.PerformLayout();
             this.tabBQ.ResumeLayout(false);
             this.tabBQ.PerformLayout();
+            this.mianzePage.ResumeLayout(false);
+            this.mianzePage.PerformLayout();
             this.parrotGroupBox1.ResumeLayout(false);
             this.parrotGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topWeb)).EndInit();
-            this.mianzePage.ResumeLayout(false);
-            this.mianzePage.PerformLayout();
             this.ResumeLayout(false);
 
         }
