@@ -231,7 +231,9 @@ namespace LZTools
             uri = "http://wd.wowlz.com/top.php";
             if (LZClass.CheckWinVer() >= 10) topWeb.Source = new Uri(uri);
             else LZDownlaod.OpenUrlInDefaultBrowser(uri);
+
         }
+        
 
         int TimeStep = 0;
         bool ThreadRun = false;

@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\lzclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\lzclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\ver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\ver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|e:\\vs\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\lzwowtools\\lztools\\index.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\index.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\index.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,8 +15,20 @@
       "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\index.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\tip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\tip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\download.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\download.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\checkimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\checkimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|e:\\vs\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\lzwowtools\\lztools\\lzclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\lzclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\lzinject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,18 +47,6 @@
       "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\keydo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\ver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\ver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\download.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\download.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\tip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\tip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\lztools\\keyboardhook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1926792F-F3B5-4911-8074-B850D6BFE45E}|LZTools\\LZTools.csproj|solutionrelative:lztools\\keyboardhook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -58,24 +58,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "Tip.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\Tip.cs",
               "RelativeDocumentMoniker": "LZTools\\Tip.cs",
               "ToolTip": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\Tip.cs",
               "RelativeToolTip": "LZTools\\Tip.cs",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAtwE8AAAAAAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAC0AAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-31T04:39:39.11Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "KeyDo.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\KeyDo.cs",
               "RelativeDocumentMoniker": "LZTools\\KeyDo.cs",
@@ -94,7 +95,7 @@
               "RelativeDocumentMoniker": "LZTools\\Index.cs",
               "ToolTip": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\Index.cs",
               "RelativeToolTip": "LZTools\\Index.cs",
-              "ViewState": "AQIAAJkAAAAAAAAAAAAAAKsAAAA/AAAA",
+              "ViewState": "AQIAANwAAAAAAAAAAAAMwPMAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T08:12:33.9Z",
               "IsPinned": true,
@@ -102,20 +103,21 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "Download.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\Download.cs",
               "RelativeDocumentMoniker": "LZTools\\Download.cs",
               "ToolTip": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\Download.cs",
               "RelativeToolTip": "LZTools\\Download.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAMwDYAAAACAAAA",
+              "ViewState": "AQIAACEAAAAAAAAAAAAMwEMAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-17T15:40:40.76Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "LZclass.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\LZclass.cs",
               "RelativeDocumentMoniker": "LZTools\\LZclass.cs",
@@ -140,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "CheckImage.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\CheckImage.cs",
               "RelativeDocumentMoniker": "LZTools\\CheckImage.cs",
@@ -148,11 +150,12 @@
               "RelativeToolTip": "LZTools\\CheckImage.cs",
               "ViewState": "AQIAACEAAAAAAAAAAAAAABUAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T11:27:40.366Z"
+              "WhenOpened": "2025-02-28T11:27:40.366Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "LZInject.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\LZInject.cs",
               "RelativeDocumentMoniker": "LZTools\\LZInject.cs",
@@ -164,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Index.Designer.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\Index.Designer.cs",
               "RelativeDocumentMoniker": "LZTools\\Index.Designer.cs",
@@ -177,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "VER.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\VER.cs",
               "RelativeDocumentMoniker": "LZTools\\VER.cs",
@@ -185,11 +188,12 @@
               "RelativeToolTip": "LZTools\\VER.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAADwvxEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T01:58:59.229Z"
+              "WhenOpened": "2025-03-20T01:58:59.229Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "emunClass.cs",
               "DocumentMoniker": "E:\\VS\u7A0B\u5E8F\\\u8001\u949F\u7684\u5C0F\u5DE5\u51772022\\LzWoWTools\\LZTools\\emunClass.cs",
               "RelativeDocumentMoniker": "LZTools\\emunClass.cs",

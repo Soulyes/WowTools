@@ -155,7 +155,6 @@
             this.AutoFishListBox = new ReaLTaiizor.Controls.DungeonListBox();
             this.BattonChange = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.ZWSearch = new ReaLTaiizor.Controls.RibbonButtonLeft();
-            this.tabAI = new System.Windows.Forms.TabPage();
             this.tabOther = new System.Windows.Forms.TabPage();
             this.crownGroupBox2 = new ReaLTaiizor.Controls.CrownGroupBox();
             this.TimeTag = new ReaLTaiizor.Controls.HeaderLabel();
@@ -177,6 +176,8 @@
             this.OpenDllLink = new System.Windows.Forms.OpenFileDialog();
             this.HiddeButton = new ReaLTaiizor.Controls.Button();
             this.SearchMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mianzePage = new System.Windows.Forms.TabPage();
+            this.headerLabel2 = new ReaLTaiizor.Controls.HeaderLabel();
             this.IndexTab.SuspendLayout();
             this.tabJinCheng.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -200,6 +201,7 @@
             this.tabBQ.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topWeb)).BeginInit();
+            this.mianzePage.SuspendLayout();
             this.SuspendLayout();
             // 
             // IndexTab
@@ -217,10 +219,10 @@
             this.IndexTab.Controls.Add(this.tabGold);
             this.IndexTab.Controls.Add(this.tabGuanggao);
             this.IndexTab.Controls.Add(this.tabZW);
-            this.IndexTab.Controls.Add(this.tabAI);
             this.IndexTab.Controls.Add(this.tabOther);
             this.IndexTab.Controls.Add(this.tabHelp);
             this.IndexTab.Controls.Add(this.tabBQ);
+            this.IndexTab.Controls.Add(this.mianzePage);
             this.IndexTab.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.IndexTab.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.IndexTab.FrameColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(50)))), ((int)(((byte)(63)))));
@@ -228,7 +230,7 @@
             this.IndexTab.ItemSize = new System.Drawing.Size(60, 140);
             this.IndexTab.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(26)))), ((int)(((byte)(28)))));
             this.IndexTab.LineTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(64)))));
-            this.IndexTab.Location = new System.Drawing.Point(2, 216);
+            this.IndexTab.Location = new System.Drawing.Point(2, 299);
             this.IndexTab.Multiline = true;
             this.IndexTab.Name = "IndexTab";
             this.IndexTab.NormalForeColor = System.Drawing.Color.White;
@@ -2205,15 +2207,6 @@
             this.ZWSearch.Text = "显示收纳清单";
             this.ZWSearch.Click += new System.EventHandler(this.ZWSearch_Click);
             // 
-            // tabAI
-            // 
-            this.tabAI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabAI.Location = new System.Drawing.Point(144, 4);
-            this.tabAI.Name = "tabAI";
-            this.tabAI.Size = new System.Drawing.Size(1372, 970);
-            this.tabAI.TabIndex = 3;
-            this.tabAI.Text = "AI托管";
-            // 
             // tabOther
             // 
             this.tabOther.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -2400,7 +2393,7 @@
             this.parrotGroupBox1.Name = "parrotGroupBox1";
             this.parrotGroupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.parrotGroupBox1.ShowText = true;
-            this.parrotGroupBox1.Size = new System.Drawing.Size(1520, 114);
+            this.parrotGroupBox1.Size = new System.Drawing.Size(1520, 201);
             this.parrotGroupBox1.TabIndex = 14;
             this.parrotGroupBox1.TabStop = false;
             this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
@@ -2414,7 +2407,7 @@
             this.topWeb.Location = new System.Drawing.Point(9, 16);
             this.topWeb.Margin = new System.Windows.Forms.Padding(4);
             this.topWeb.Name = "topWeb";
-            this.topWeb.Size = new System.Drawing.Size(1504, 90);
+            this.topWeb.Size = new System.Drawing.Size(1504, 177);
             this.topWeb.TabIndex = 1;
             this.topWeb.ZoomFactor = 1D;
             // 
@@ -2465,6 +2458,29 @@
             this.SearchMenu.Name = "ZwList";
             this.SearchMenu.Size = new System.Drawing.Size(61, 4);
             // 
+            // mianzePage
+            // 
+            this.mianzePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.mianzePage.Controls.Add(this.headerLabel2);
+            this.mianzePage.Location = new System.Drawing.Point(144, 4);
+            this.mianzePage.Name = "mianzePage";
+            this.mianzePage.Padding = new System.Windows.Forms.Padding(3);
+            this.mianzePage.Size = new System.Drawing.Size(1372, 970);
+            this.mianzePage.TabIndex = 10;
+            this.mianzePage.Text = "免责申明";
+            // 
+            // headerLabel2
+            // 
+            this.headerLabel2.AutoSize = true;
+            this.headerLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.headerLabel2.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headerLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.headerLabel2.Location = new System.Drawing.Point(49, 47);
+            this.headerLabel2.Name = "headerLabel2";
+            this.headerLabel2.Size = new System.Drawing.Size(1289, 780);
+            this.headerLabel2.TabIndex = 3;
+            this.headerLabel2.Text = resources.GetString("headerLabel2.Text");
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2472,7 +2488,7 @@
             this.BackImage = global::LZTools.Properties.Resources.logo64;
             this.BackImagePadding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.BackMaxSize = 64;
-            this.ClientSize = new System.Drawing.Size(1522, 1193);
+            this.ClientSize = new System.Drawing.Size(1522, 1280);
             this.Controls.Add(this.HiddeButton);
             this.Controls.Add(this.StartCheck);
             this.Controls.Add(this.parrotGroupBox1);
@@ -2522,6 +2538,8 @@
             this.parrotGroupBox1.ResumeLayout(false);
             this.parrotGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topWeb)).EndInit();
+            this.mianzePage.ResumeLayout(false);
+            this.mianzePage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2533,7 +2551,6 @@
         private System.Windows.Forms.TabPage tabJinCheng;
         private System.Windows.Forms.TabPage tabPeizhi;
         private System.Windows.Forms.TabPage tabGuanggao;
-        private System.Windows.Forms.TabPage tabAI;
         private System.Windows.Forms.TabPage tabOther;
         private ReaLTaiizor.Controls.CrownGroupBox crownGroupBox2;
         private ReaLTaiizor.Controls.HeaderLabel headerLabelJishiQI;
@@ -2675,6 +2692,8 @@
         private ReaLTaiizor.Controls.ComboBoxEdit KeySaveList;
         private ReaLTaiizor.Controls.LostButton LoadKeyList;
         private System.Windows.Forms.ContextMenuStrip SearchMenu;
+        private System.Windows.Forms.TabPage mianzePage;
+        private ReaLTaiizor.Controls.HeaderLabel headerLabel2;
     }
 }
 
