@@ -26,6 +26,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security;
 using System.Security.Policy;
 using OpenCvSharp.XPhoto;
+using OpenCvSharp;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace LZTools
 {
@@ -36,6 +38,7 @@ namespace LZTools
         KeyDo LzKeysDo = new KeyDo();
         Thread CoreTaskOnly;
         Thread GuajiTaskOnly;
+        Thread DiaoFish;
         List<String> KeyTList = new List<string>();
 
         [DllImport("User32.dll", EntryPoint = "PostMessage")]
@@ -121,11 +124,6 @@ namespace LZTools
 
             CheckAll();
             DoShouNa();
-
-           
-
-
-            //new ToastNotification("老钟小工具", "欢迎使用老钟魔兽小工具\r\n如果有任何疑问请点击kook或者QQ联系老钟", 3000);
         }
 
         //注册快捷键
@@ -137,17 +135,7 @@ namespace LZTools
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
         // 定义常量
-        private const int WM_HOTKEY = 0x0312; // 热键消息
-        private const int HOTKEY_ID_ALT_1 = 1; // Alt+1 的唯一标识符
-        private const int HOTKEY_ID_ALT_2 = 2; // Alt+2 的唯一标识符
-        private const int HOTKEY_ID_ALT_3 = 3; // ALT+CTRL+Q 的唯一标识符
-        private const int MOD_CRTL = 0x0002; // 0001 alt 0002 crtl
-        private const int MOD_ALT = 0x0001; // 0001 alt 0002 crtl
-        private const int VK_1 = 0x31; // 1 键的虚拟键码
-        private const int VK_2 = 0x32; // 2 键的虚拟键码
-        private const int VK_S = 0x53; // 2 键的虚拟键码
-        private const int VK_X = 0x58; // 2 键的虚拟键码
-        private const int VK_Q = 0x51; // 2 键的虚拟键码
+
 
 
         // 重写 WndProc 方法以处理窗口消息
@@ -183,6 +171,12 @@ namespace LZTools
                                 else { ToTip(Foucid.ToString() + " 注入失败"); }
                                 break;
                             }
+                        case HOTKEY_ID_ALT_4:
+                            {
+                                if (this.Visible) this.Hide();
+                                else this.Show();
+                                break;
+                            }
                             
                     }
                 }
@@ -190,15 +184,37 @@ namespace LZTools
 
         }
 
+        private const int WM_HOTKEY = 0x0312; // 热键消息
+        private const int HOTKEY_ID_ALT_1 = 1; // Alt+1 的唯一标识符
+        private const int HOTKEY_ID_ALT_2 = 2; // Alt+2 的唯一标识符
+        private const int HOTKEY_ID_ALT_3 = 3; // ALT+CTRL+Q 的唯一标识符
+        private const int HOTKEY_ID_ALT_4 = 4; // ALT+CTRL+Q 的唯一标识符
+        private const int HOTKEY_ID_ALT_5 = 5; // ALT+CTRL+Q 的唯一标识符
+        private const int MOD_CRTL = 0x0002; // 0001 alt 0002 crtl
+        private const int MOD_ALT = 0x0001; // 0001 alt 0002 crtl
+        private const int VK_1 = 0x31; // 1 键的虚拟键码
+        private const int VK_2 = 0x32; // 2 键的虚拟键码
+        private const int VK_S = 0x53; // 2 键的虚拟键码
+        private const int VK_X = 0x58; // 2 键的虚拟键码
+        private const int VK_Q = 0x51; // 2 键的虚拟键码
+
         // 在窗体加载时注册热键
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_1, MOD_ALT | MOD_CRTL, VK_S); // 注册 Alt+1
-            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_ALT | MOD_CRTL, VK_X); // 注册 Alt+2
-            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_3, MOD_ALT | MOD_CRTL, VK_Q); // 注册 Alt+Q
+            TBKey.Text = LzKeysDo.GetIni("ModKey", "TB", "", System.Environment.CurrentDirectory + @"\Runlist.ini");
+            if (TBKey.Text == "") TBKey.Text = "CTRL+ALT+X";
+            GJKey.Text = LzKeysDo.GetIni("ModKey", "GJ", "", System.Environment.CurrentDirectory + @"\Runlist.ini");
+            if (GJKey.Text == "") GJKey.Text = "CTRL+ALT+S";
+            InjectKey.Text = LzKeysDo.GetIni("ModKey", "Inject", "", System.Environment.CurrentDirectory + @"\Runlist.ini");
+            if (InjectKey.Text == "") InjectKey.Text = "CTRL+ALT+Q";
+            HiddenKey.Text = LzKeysDo.GetIni("ModKey", "Hidden", "", System.Environment.CurrentDirectory + @"\Runlist.ini");
+            if (HiddenKey.Text == "") HiddenKey.Text = "CTRL+ALT+D1";
+
+            RegKey();
             //如果要ALT+CRTL RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, MOD_CRTL | MOD_ALT, VK_2); // 注册 Alt+2
         }
+
 
         private void CheckAll()
         {
@@ -742,8 +758,8 @@ namespace LZTools
         {
             myKeyEventHandeler = new KeyEventHandler(hook_KeyDown);
             k_hook.KeyDownEvent += myKeyEventHandeler;//钩住键按下
-            //myKeyEventHandeler = new KeyEventHandler(hook_KeyUp);
-            //k_hook.KeyUpEvent += myKeyEventHandeler;//钩住松按键
+            myKeyEventHandeler = new KeyEventHandler(hook_KeyUP);
+            k_hook.KeyUpEvent += myKeyEventHandeler;//钩住松按键
             k_hook.Start();//安装键盘钩子
             StratTB.Text = "关闭同步";
         }
@@ -753,8 +769,8 @@ namespace LZTools
             {
                 //myKeyEventHandeler = new KeyEventHandler(hook_KeyDown);
                 k_hook.KeyDownEvent -= myKeyEventHandeler;//钩住键按下
-                //myKeyEventHandeler = new KeyEventHandler(hook_KeyUp);
-                //k_hook.KeyDownEvent -= myKeyEventHandeler;//钩住松按键
+                //myKeyEventHandeler = new KeyEventHandler(hook_KeyUP);
+                k_hook.KeyUpEvent -= myKeyEventHandeler;//钩住松按键
                 myKeyEventHandeler = null;
                 k_hook.Stop();//安装键盘钩子
             }
@@ -763,15 +779,10 @@ namespace LZTools
 
         private void hook_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (KeyTList.Contains(e.KeyCode.ToString()) == true) INFOout.AppendText(e.KeyCode.ToString() + " 在包含范围内\r\n");
-
-            //if (((e.KeyValue >= 48 && e.KeyValue <= 57) || (e.KeyValue >= 112 && e.KeyValue <= 123) || e.KeyValue == (int)Keys.Tab || e.KeyValue == (int)Keys.Space) ||  e.KeyValue == (int)Keys.C || e.KeyValue == (int)Keys.E)
             
             if (KeyTList.Contains(e.KeyCode.ToString()) == true)
             {
-                
                 //INFOout.AppendText(e.KeyCode.ToString() + " 在包含范围内\r\n");
-                //启动项勾选的进程发送按键的命令
                 bool FindProcess = false;
                 Process p = null;
                 for (int i = 0; i < TongBuList.Items.Count; i++)
@@ -792,6 +803,41 @@ namespace LZTools
                     if (FindProcess == true)
                     {
                         PostMessage(p.MainWindowHandle, WM_KEYDOWN, e.KeyValue, 0);
+                        //PostMessage(p.MainWindowHandle, WM_KEYUP, e.KeyValue, 0);
+                        //INFOout.Text += " 同步按键：" + e.KeyCode.ToString() + " values " + e.KeyValue.ToString() + "\r\n";
+                    }
+
+                }
+
+            }
+        }
+
+        private void hook_KeyUP(object sender, KeyEventArgs e)
+        {
+
+            if (KeyTList.Contains(e.KeyCode.ToString()) == true)
+            {
+                //INFOout.AppendText(e.KeyCode.ToString() + " 在包含范围内\r\n");
+                bool FindProcess = false;
+                Process p = null;
+                for (int i = 0; i < TongBuList.Items.Count; i++)
+                {
+                    //读取要同步的id
+                    FindProcess = false;
+                    try
+                    {
+                        p = Process.GetProcessById(Convert.ToInt32(TongBuList.Items[i].ToString()));
+                        FindProcess = true;
+                    }
+                    catch
+                    {
+                        INFOout.Text += (TongBuList.Items[i].ToString() + " 进程丢失！\r\n");
+                        TongBuList.Items.RemoveAt(i);
+                        i--;
+                    }
+                    if (FindProcess == true)
+                    {
+                        //PostMessage(p.MainWindowHandle, WM_KEYDOWN, e.KeyValue, 0);
                         PostMessage(p.MainWindowHandle, WM_KEYUP, e.KeyValue, 0);
                         //INFOout.Text += " 同步按键：" + e.KeyCode.ToString() + " values " + e.KeyValue.ToString() + "\r\n";
                     }
@@ -816,22 +862,8 @@ namespace LZTools
             if (this.Visible) this.Hide();
             else this.Show();
 
-            //if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
-            //else if(this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Minimized;
-
         }
 
-        /*
-        private void SizeChange(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                //ToTip("最小化");
-                ShowInTaskbar = false;
-            }
-            else ShowInTaskbar = true;
-        }
-        */
         private void StartUpdate_Click(object sender, EventArgs e)
         {
             //LZDownlaod.UpdateMain();
@@ -846,18 +878,99 @@ namespace LZTools
             Environment.Exit(1);
         }
 
+        Thread ThFish;
+
         private void StartFish_Click(object sender, EventArgs e)
         {
-            //ToTip("功能开发中，敬请期待！");
+            ToTip("功能开发中，敬请期待！");
+            /*
             ThreadStart ThreadImage = () => ImageFinder.ToFind();
             Thread ImageCh = new Thread(ThreadImage);
             ImageCh.Start();
-
+            */
             //ImageFinder.ToFind();
+
+            StartFish.Enabled = false;
+            StartFish.Refresh();
+
+            try
+            {
+                string imagePath = "test.jpg";
+
+                // 1. 检查文件是否存在
+                if (!File.Exists(imagePath))
+                {
+                    MessageBox.Show($"找不到图像文件: {imagePath}");
+                    return;
+                }
+
+                int FishProcessID = Convert.ToInt32(FishText.Text);
+                Process FishProcess = Process.GetProcessById(FishProcessID);
+
+
+                // 3. 执行检测
+                ThreadStart DiaoyuFun = () => Diaoyu(imagePath, FishProcess);
+                DiaoFish = new Thread(DiaoyuFun);
+                DiaoFish.Start();
+
+                ThreadStart mintofish = () => dokeyfish(FishProcess);
+                ThFish = new Thread(mintofish);
+                ThFish.Start();
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
 
-        
+        private void dokeyfish(Process FishProcess)
+        {
+            while(true)
+            { 
+
+            PostMessage(FishProcess.MainWindowHandle, WM_KEYDOWN, (int)Keys.D9, 0);
+            PostMessage(FishProcess.MainWindowHandle, WM_KEYUP, (int)Keys.D9, 0);
+            Thread.Sleep(31000);
+            }
+        }
+
+        private void Diaoyu(string imagePath,Process FishProcess)
+        {
+            // 2. 创建检测器
+
+            while(true)
+            { 
+                var detector = new ImageFinder(imagePath);
+                detector.SimilarityThreshold = 0.5; // 相似度阈值不要设置过高
+                detector.DetectScaledImages = true;  // 启用比例缩放检测
+                detector.MinScale = 0.3;            // 最小缩放比例
+                detector.MaxScale = 3.0;            // 最大缩放比例
+                detector.ScaleStep = 0.05;           // 缩放步长
+
+                var result = detector.DetectOnce();
+
+                if (result.IsDetected)
+                {
+                    //Console.WriteLine($"找到目标！相似度: {result.Similarity:P0}");
+                    //MessageBox.Show($"找到目标！相似度: {result.Similarity:P0}");
+                    //做具体动作
+                    PostMessage(FishProcess.MainWindowHandle, WM_KEYDOWN, (int)Keys.D0, 0);
+                    PostMessage(FishProcess.MainWindowHandle, WM_KEYUP, (int)Keys.D0, 0);
+
+                }
+                else
+                {
+                    //MessageBox.Show("未找到目标");
+                }
+                Thread.Sleep(100);
+            }
+
+        }
+
+
         private void ZWSearch_Click(object sender, EventArgs e)
         {
             LZClass.ShowCloseAll(true);
@@ -895,8 +1008,7 @@ namespace LZTools
             LZClass.ShowCloseAll(true);
             try
             {
-                UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_1); // 注销 Alt+1
-                UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_2); // 注销 Alt+2
+                UnregKey();
             }
             catch { }
             LzIcon.Dispose();
@@ -972,12 +1084,6 @@ namespace LZTools
                 
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AutoFishListBox_DoubleClick_1(object sender, EventArgs e)
         {
             DoChangeID.Text = AutoFishListBox.SelectedItem.ToString();
@@ -1041,5 +1147,119 @@ namespace LZTools
             KeySaveList.Refresh();
         }
 
+        private void HandleKeyInput(ForeverTextBox textBox, KeyEventArgs e)
+        {
+            // 清空文本框
+            textBox.Text = "";
+
+            // 构建按键组合字符串
+            var keyParts = new List<string>();
+
+            // 检查修饰键
+            if (e.Control) keyParts.Add("CTRL");
+            if (e.Alt) keyParts.Add("ALT");
+            //if (e.Shift) keyParts.Add("Shift");
+
+            // 添加主键（排除修饰键本身）
+            if (!IsModifierKey(e.KeyCode))
+            {
+                keyParts.Add(e.KeyCode.ToString());
+            }
+
+            // 组合成字符串（如 "Ctrl+Alt+S"）
+            textBox.Text = string.Join("+", keyParts);
+
+            // 阻止后续事件处理
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+        }
+
+        // 辅助函数：判断是否是修饰键
+        private bool IsModifierKey(Keys key)
+        {
+            return key == Keys.ControlKey ||
+                   key == Keys.Menu ||      // Alt键
+                   key == Keys.ShiftKey ||
+                   key == Keys.LWin ||
+                   key == Keys.RWin;
+        }
+
+        private void TBKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            HandleKeyInput(TBKey, e); // 调用通用方法
+        }
+
+        private void GJKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            HandleKeyInput(GJKey, e); // 调用通用方法
+        }
+
+        private void HiddenKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            HandleKeyInput(HiddenKey, e); // 调用通用方法
+        }
+
+        private void InjectKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            HandleKeyInput(InjectKey, e); // 调用通用方法
+        }
+
+        private void ribbonButtonLeft1_Click(object sender, EventArgs e)
+        {
+
+            groupBox6.Focus();
+            UnregKey();
+            RegKey();
+
+        }
+
+        private void RegKey()
+        {
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_1, GetModifiers(GJKey.Text), GetKeyOnly(GJKey.Text)); // 注册 Alt+CTRL+S
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_2, GetModifiers(TBKey.Text), GetKeyOnly(TBKey.Text)); // 注册 Alt+CTRL+Q
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_3, GetModifiers(InjectKey.Text), GetKeyOnly(InjectKey.Text)); // 注册 Alt+CTRL+Q
+            RegisterHotKey(this.Handle, HOTKEY_ID_ALT_4, GetModifiers(HiddenKey.Text), GetKeyOnly(HiddenKey.Text)); // 注册 Alt+CTRL+1
+            //RegisterHotKey(this.Handle, HOTKEY_ID_ALT_5, MOD_ALT | MOD_CRTL, VK_2); // 注册 Alt+CTRL+2
+
+            LzKeysDo.SaveIni("ModKey", "TB", TBKey.Text, System.Environment.CurrentDirectory + @"\Runlist.ini");
+            LzKeysDo.SaveIni("ModKey", "GJ", GJKey.Text, System.Environment.CurrentDirectory + @"\Runlist.ini");
+            LzKeysDo.SaveIni("ModKey", "Inject", InjectKey.Text, System.Environment.CurrentDirectory + @"\Runlist.ini");
+            LzKeysDo.SaveIni("ModKey", "Hidden", HiddenKey.Text, System.Environment.CurrentDirectory + @"\Runlist.ini");
+
+        }
+
+        private int GetModifiers(string KeyString)
+        {
+            int mod = 0;
+
+            if (KeyString.Contains("CTRL")) mod |= 0x0002;
+            if (KeyString.Contains("ALT")) mod |= 0x0001;
+
+            return mod;
+        }
+
+        private int GetKeyOnly(string KeyString) 
+        {
+            string aa =  KeyString.Replace("CTRL", "").Replace("ALT", "").Replace("+", "").Replace(" ", "");
+            int virtualKey = 0;
+            if (Enum.TryParse(aa, out Keys key))
+            {
+                // 2. 转换为虚拟键码 (D0 → 0x30)
+                virtualKey = (int)key;
+                Console.WriteLine($"0x{virtualKey:X}"); // 输出 "0x30"
+            }
+
+            //MessageBox.Show(virtualKey.ToString());
+            return virtualKey;
+        }
+
+        private void UnregKey() 
+        {
+            UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_1); // 注销 Alt+1
+            UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_2); // 注销 Alt+2
+            UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_3); // 注销 Alt+2
+            UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_4); // 注销 Alt+2
+            //UnregisterHotKey(this.Handle, HOTKEY_ID_ALT_5); // 注销 Alt+2
+        }
     }
 }

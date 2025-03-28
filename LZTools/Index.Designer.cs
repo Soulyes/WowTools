@@ -34,13 +34,13 @@
             this.IndexTab = new ReaLTaiizor.Controls.TabPage();
             this.tabJinCheng = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dungeonLabel3 = new ReaLTaiizor.Controls.DungeonLabel();
             this.KeySwitch = new ReaLTaiizor.Controls.MaterialSwitch();
             this.INFOout = new System.Windows.Forms.RichTextBox();
             this.StartFish = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.StratTB = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.StartWorking = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FishText = new System.Windows.Forms.TextBox();
             this.toSetting2 = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.ToSetting = new ReaLTaiizor.Controls.FoxLinkLabel();
             this.dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -178,6 +178,16 @@
             this.OpenDllLink = new System.Windows.Forms.OpenFileDialog();
             this.HiddeButton = new ReaLTaiizor.Controls.Button();
             this.SearchMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TBKey = new ReaLTaiizor.Controls.ForeverTextBox();
+            this.GJKey = new ReaLTaiizor.Controls.ForeverTextBox();
+            this.HiddenKey = new ReaLTaiizor.Controls.ForeverTextBox();
+            this.ribbonButtonLeft1 = new ReaLTaiizor.Controls.RibbonButtonLeft();
+            this.InjectKey = new ReaLTaiizor.Controls.ForeverTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.IndexTab.SuspendLayout();
             this.tabJinCheng.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -202,6 +212,7 @@
             this.mianzePage.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topWeb)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // IndexTab
@@ -261,7 +272,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dungeonLabel3);
             this.groupBox2.Controls.Add(this.KeySwitch);
             this.groupBox2.Controls.Add(this.INFOout);
             this.groupBox2.Controls.Add(this.StartFish);
@@ -275,19 +285,6 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "功能启用";
-            // 
-            // dungeonLabel3
-            // 
-            this.dungeonLabel3.AutoSize = true;
-            this.dungeonLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.dungeonLabel3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.dungeonLabel3.ForeColor = System.Drawing.Color.White;
-            this.dungeonLabel3.Location = new System.Drawing.Point(1101, 48);
-            this.dungeonLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.dungeonLabel3.Name = "dungeonLabel3";
-            this.dungeonLabel3.Size = new System.Drawing.Size(162, 48);
-            this.dungeonLabel3.TabIndex = 11;
-            this.dungeonLabel3.Text = "挂机 ALT+Ctrl + S\r\n同步 ALT+Ctrl + X";
             // 
             // KeySwitch
             // 
@@ -331,13 +328,14 @@
             this.StartFish.DownBaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(190)))));
             this.StartFish.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
             this.StartFish.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.StartFish.Enabled = false;
             this.StartFish.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
             this.StartFish.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.StartFish.HoverBaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(191)))), ((int)(((byte)(195)))));
             this.StartFish.HoverBaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(192)))), ((int)(((byte)(196)))));
             this.StartFish.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
             this.StartFish.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.StartFish.Location = new System.Drawing.Point(526, 56);
+            this.StartFish.Location = new System.Drawing.Point(526, 57);
             this.StartFish.Margin = new System.Windows.Forms.Padding(4);
             this.StartFish.Name = "StartFish";
             this.StartFish.Size = new System.Drawing.Size(138, 45);
@@ -402,6 +400,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.FishText);
             this.groupBox1.Controls.Add(this.toSetting2);
             this.groupBox1.Controls.Add(this.ToSetting);
             this.groupBox1.Controls.Add(this.dungeonLabel1);
@@ -419,6 +418,13 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "进程";
+            // 
+            // FishText
+            // 
+            this.FishText.Location = new System.Drawing.Point(1097, 52);
+            this.FishText.Name = "FishText";
+            this.FishText.Size = new System.Drawing.Size(166, 39);
+            this.FishText.TabIndex = 11;
             // 
             // toSetting2
             // 
@@ -1660,6 +1666,7 @@
             // tabPeizhi2
             // 
             this.tabPeizhi2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPeizhi2.Controls.Add(this.groupBox6);
             this.tabPeizhi2.Controls.Add(this.GroupDLLinject);
             this.tabPeizhi2.Location = new System.Drawing.Point(144, 4);
             this.tabPeizhi2.Name = "tabPeizhi2";
@@ -2337,7 +2344,7 @@
             this.headerLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.headerLabel2.Location = new System.Drawing.Point(49, 47);
             this.headerLabel2.Name = "headerLabel2";
-            this.headerLabel2.Size = new System.Drawing.Size(1289, 780);
+            this.headerLabel2.Size = new System.Drawing.Size(1003, 810);
             this.headerLabel2.TabIndex = 3;
             this.headerLabel2.Text = resources.GetString("headerLabel2.Text");
             // 
@@ -2481,6 +2488,176 @@
             this.SearchMenu.Name = "ZwList";
             this.SearchMenu.Size = new System.Drawing.Size(61, 4);
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.InjectKey);
+            this.groupBox6.Controls.Add(this.label8);
+            this.groupBox6.Controls.Add(this.ribbonButtonLeft1);
+            this.groupBox6.Controls.Add(this.HiddenKey);
+            this.groupBox6.Controls.Add(this.GJKey);
+            this.groupBox6.Controls.Add(this.TBKey);
+            this.groupBox6.Controls.Add(this.label7);
+            this.groupBox6.Controls.Add(this.label5);
+            this.groupBox6.Controls.Add(this.label4);
+            this.groupBox6.ForeColor = System.Drawing.Color.White;
+            this.groupBox6.Location = new System.Drawing.Point(2, 166);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(1292, 160);
+            this.groupBox6.TabIndex = 33;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "自定义快捷键";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label4.Location = new System.Drawing.Point(11, 40);
+            this.label4.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(161, 27);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "开启/关闭同步：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label5.Location = new System.Drawing.Point(601, 40);
+            this.label5.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(161, 27);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "开启/关闭挂机：";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label7.Location = new System.Drawing.Point(11, 98);
+            this.label7.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(161, 27);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "隐藏/显示界面：";
+            // 
+            // TBKey
+            // 
+            this.TBKey.BackColor = System.Drawing.Color.Transparent;
+            this.TBKey.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.TBKey.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.TBKey.FocusOnHover = false;
+            this.TBKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TBKey.Location = new System.Drawing.Point(222, 34);
+            this.TBKey.Margin = new System.Windows.Forms.Padding(4);
+            this.TBKey.MaxLength = 32767;
+            this.TBKey.Multiline = false;
+            this.TBKey.Name = "TBKey";
+            this.TBKey.ReadOnly = false;
+            this.TBKey.Size = new System.Drawing.Size(279, 38);
+            this.TBKey.TabIndex = 34;
+            this.TBKey.Text = "CTRL+ALT+X";
+            this.TBKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TBKey.UseSystemPasswordChar = false;
+            this.TBKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBKey_KeyDown);
+            // 
+            // GJKey
+            // 
+            this.GJKey.BackColor = System.Drawing.Color.Transparent;
+            this.GJKey.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.GJKey.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.GJKey.FocusOnHover = false;
+            this.GJKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.GJKey.Location = new System.Drawing.Point(808, 34);
+            this.GJKey.Margin = new System.Windows.Forms.Padding(4);
+            this.GJKey.MaxLength = 32767;
+            this.GJKey.Multiline = false;
+            this.GJKey.Name = "GJKey";
+            this.GJKey.ReadOnly = false;
+            this.GJKey.Size = new System.Drawing.Size(279, 38);
+            this.GJKey.TabIndex = 53;
+            this.GJKey.Text = "CTRL+ALT+S";
+            this.GJKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.GJKey.UseSystemPasswordChar = false;
+            this.GJKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GJKey_KeyDown);
+            // 
+            // HiddenKey
+            // 
+            this.HiddenKey.BackColor = System.Drawing.Color.Transparent;
+            this.HiddenKey.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.HiddenKey.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.HiddenKey.FocusOnHover = false;
+            this.HiddenKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.HiddenKey.Location = new System.Drawing.Point(222, 92);
+            this.HiddenKey.Margin = new System.Windows.Forms.Padding(4);
+            this.HiddenKey.MaxLength = 32767;
+            this.HiddenKey.Multiline = false;
+            this.HiddenKey.Name = "HiddenKey";
+            this.HiddenKey.ReadOnly = false;
+            this.HiddenKey.Size = new System.Drawing.Size(279, 38);
+            this.HiddenKey.TabIndex = 53;
+            this.HiddenKey.Text = "CTRL+ALT+D1";
+            this.HiddenKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.HiddenKey.UseSystemPasswordChar = false;
+            this.HiddenKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HiddenKey_KeyDown);
+            // 
+            // ribbonButtonLeft1
+            // 
+            this.ribbonButtonLeft1.BackColor = System.Drawing.Color.Transparent;
+            this.ribbonButtonLeft1.BaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(201)))), ((int)(((byte)(205)))));
+            this.ribbonButtonLeft1.BaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(190)))));
+            this.ribbonButtonLeft1.BorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
+            this.ribbonButtonLeft1.BorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ribbonButtonLeft1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ribbonButtonLeft1.DownBaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(201)))), ((int)(((byte)(205)))));
+            this.ribbonButtonLeft1.DownBaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(190)))));
+            this.ribbonButtonLeft1.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
+            this.ribbonButtonLeft1.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ribbonButtonLeft1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.ribbonButtonLeft1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.ribbonButtonLeft1.HoverBaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(191)))), ((int)(((byte)(195)))));
+            this.ribbonButtonLeft1.HoverBaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(192)))), ((int)(((byte)(196)))));
+            this.ribbonButtonLeft1.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
+            this.ribbonButtonLeft1.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ribbonButtonLeft1.Location = new System.Drawing.Point(1126, 85);
+            this.ribbonButtonLeft1.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbonButtonLeft1.Name = "ribbonButtonLeft1";
+            this.ribbonButtonLeft1.Size = new System.Drawing.Size(138, 45);
+            this.ribbonButtonLeft1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.ribbonButtonLeft1.TabIndex = 34;
+            this.ribbonButtonLeft1.Text = "注册快捷键";
+            this.ribbonButtonLeft1.Click += new System.EventHandler(this.ribbonButtonLeft1_Click);
+            // 
+            // InjectKey
+            // 
+            this.InjectKey.BackColor = System.Drawing.Color.Transparent;
+            this.InjectKey.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.InjectKey.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.InjectKey.FocusOnHover = false;
+            this.InjectKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.InjectKey.Location = new System.Drawing.Point(808, 92);
+            this.InjectKey.Margin = new System.Windows.Forms.Padding(4);
+            this.InjectKey.MaxLength = 32767;
+            this.InjectKey.Multiline = false;
+            this.InjectKey.Name = "InjectKey";
+            this.InjectKey.ReadOnly = false;
+            this.InjectKey.Size = new System.Drawing.Size(279, 38);
+            this.InjectKey.TabIndex = 55;
+            this.InjectKey.Text = "CTRL+ALT+Q";
+            this.InjectKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.InjectKey.UseSystemPasswordChar = false;
+            this.InjectKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InjectKey_KeyDown);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label8.Location = new System.Drawing.Point(601, 98);
+            this.label8.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(159, 27);
+            this.label8.TabIndex = 54;
+            this.label8.Text = "当前注入 DLL ：";
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2540,6 +2717,8 @@
             this.parrotGroupBox1.ResumeLayout(false);
             this.parrotGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topWeb)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2688,12 +2867,22 @@
         private ReaLTaiizor.Controls.DungeonListBox ProcessList;
         private ReaLTaiizor.Controls.Button HiddeButton;
         private ReaLTaiizor.Controls.MaterialSwitch KeySwitch;
-        private ReaLTaiizor.Controls.DungeonLabel dungeonLabel3;
         private ReaLTaiizor.Controls.ComboBoxEdit KeySaveList;
         private ReaLTaiizor.Controls.LostButton LoadKeyList;
         private System.Windows.Forms.ContextMenuStrip SearchMenu;
         private System.Windows.Forms.TabPage mianzePage;
         private ReaLTaiizor.Controls.HeaderLabel headerLabel2;
+        private System.Windows.Forms.TextBox FishText;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private ReaLTaiizor.Controls.ForeverTextBox HiddenKey;
+        private ReaLTaiizor.Controls.ForeverTextBox GJKey;
+        private ReaLTaiizor.Controls.ForeverTextBox TBKey;
+        private ReaLTaiizor.Controls.RibbonButtonLeft ribbonButtonLeft1;
+        private ReaLTaiizor.Controls.ForeverTextBox InjectKey;
+        private System.Windows.Forms.Label label8;
     }
 }
 

@@ -11,7 +11,7 @@ namespace LZTools
     {
         public static string FromVer()
         {
-            return "110";
+            return "112";
         }
     }
 }
